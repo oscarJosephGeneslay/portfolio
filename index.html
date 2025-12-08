@@ -8,336 +8,330 @@
     
     <style>
         :root {
-            /* Palette Moderne */
-            --primary: #2c3e50; /* Bleu Nuit (Elégant) */
-            --accent: #3498db;  /* Bleu Roi (Action) */
-            --highlight: #e74c3c; /* Touche de rouge (Rappel Cnam) */
-            --bg-color: #f0f2f5;
-            --card-bg: rgba(255, 255, 255, 0.95);
+            /* Couleurs de base */
             --text-main: #2c3e50;
-            --text-light: #7f8c8d;
+            --text-light: #636e72;
+            --white: #ffffff;
+            --bg-global: #fdfdfd;
             
-            /* Ombres douces */
+            /* Thèmes par section */
+            /* 1. Portfolio (Beige/Terre) */
+            --theme-port-bg: #fdfbf7;
+            --theme-port-accent: #a1887f;
+            --theme-port-dark: #5d4037;
+
+            /* 2. Formation (Bleu Pâle) */
+            --theme-form-bg: #f0f8ff;
+            --theme-form-accent: #64b5f6;
+            --theme-form-dark: #1976d2;
+
+            /* 3. Expérience (Rouge Pâle/Cnam) */
+            --theme-exp-bg: #fff5f5;
+            --theme-exp-accent: #e57373;
+            --theme-exp-dark: #c0392b;
+
+            /* Ombres */
             --shadow: 0 10px 30px rgba(0,0,0,0.05);
-            --shadow-hover: 0 20px 40px rgba(0,0,0,0.12);
+            --shadow-hover: 0 20px 40px rgba(0,0,0,0.1);
         }
 
         * { box-sizing: border-box; }
 
         body {
             font-family: 'Open Sans', sans-serif;
-            background-color: var(--bg-color);
+            background-color: var(--bg-global);
             color: var(--text-main);
             margin: 0;
             padding: 0;
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background-color 0.5s ease;
         }
 
-        /* --- ANIMATION D'ARRIÈRE-PLAN --- */
-        .background-anim {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        /* --- ANIMATION ARCS DE CERCLE --- */
+        .arcs-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; overflow: hidden; pointer-events: none;
         }
 
-        .circles {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden;
-        }
-
-        .circles li {
-            position: absolute; display: block; list-style: none;
-            width: 20px; height: 20px; background: rgba(52, 152, 219, 0.2);
-            animation: animate 25s linear infinite; bottom: -150px;
+        .arc {
+            position: absolute;
             border-radius: 50%;
+            border: 2px solid rgba(0,0,0,0.03);
+            transition: all 1s ease;
         }
 
-        .circles li:nth-child(1){ left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
-        .circles li:nth-child(2){ left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
-        .circles li:nth-child(3){ left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
-        .circles li:nth-child(4){ left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
-        .circles li:nth-child(5){ left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
-        .circles li:nth-child(6){ left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
-        .circles li:nth-child(7){ left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
-        .circles li:nth-child(8){ left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
-        .circles li:nth-child(9){ left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
-        .circles li:nth-child(10){ left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
-
-        @keyframes animate {
-            0%{ transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
-            100%{ transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
+        /* Arc Gauche */
+        .arc-left-1 {
+            width: 60vh; height: 60vh;
+            left: -30vh; top: 20%;
+            border-right: 4px solid rgba(0,0,0,0.06);
+            animation: rotateArc 40s linear infinite;
         }
+        .arc-left-2 {
+            width: 80vh; height: 80vh;
+            left: -40vh; top: 15%;
+            border-right: 2px solid rgba(0,0,0,0.04);
+            animation: rotateArcReverse 60s linear infinite;
+        }
+
+        /* Arc Droit */
+        .arc-right-1 {
+            width: 70vh; height: 70vh;
+            right: -35vh; bottom: 10%;
+            border-left: 4px solid rgba(0,0,0,0.06);
+            animation: rotateArc 50s linear infinite;
+        }
+        .arc-right-2 {
+            width: 90vh; height: 90vh;
+            right: -45vh; bottom: 5%;
+            border-left: 2px solid rgba(0,0,0,0.04);
+            animation: rotateArcReverse 70s linear infinite;
+        }
+
+        @keyframes rotateArc { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes rotateArcReverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
 
         /* --- HEADER --- */
         header {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            padding: 60px 20px;
+            padding: 50px 20px;
             text-align: center;
             box-shadow: var(--shadow);
-            margin-bottom: 40px;
             border-bottom: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 10;
         }
 
         .profile-img {
-            width: 170px; height: 170px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            margin-bottom: 20px;
+            width: 160px; height: 160px;
+            border-radius: 50%; object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
             transition: transform 0.3s;
         }
-        .profile-img:hover { transform: scale(1.05) rotate(2deg); }
+        .profile-img:hover { transform: scale(1.05); }
 
-        h1 { margin: 0; color: var(--primary); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 2.5rem; letter-spacing: -1px; }
-        h2 { margin: 10px 0 20px; color: var(--accent); font-weight: 500; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; }
-        .bio { max-width: 700px; margin: 0 auto; color: var(--text-light); font-size: 1.05rem; }
+        h1 { margin: 0; color: var(--text-main); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 2.2rem; }
+        h2 { margin: 10px 0 20px; font-weight: 500; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-light); }
+        .bio { max-width: 700px; margin: 0 auto; color: var(--text-light); }
 
         /* --- NAVIGATION --- */
         nav {
-            display: flex; justify-content: center; gap: 20px;
-            margin-bottom: 50px; flex-wrap: wrap;
+            display: flex; justify-content: center; gap: 30px;
+            margin: 40px 0; padding: 0 20px;
+            flex-wrap: wrap;
         }
 
         .nav-btn {
             padding: 12px 35px;
             background: white;
-            border: none;
+            border: 2px solid transparent;
             color: var(--text-light);
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1rem; font-weight: 600;
             cursor: pointer;
             border-radius: 50px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
             font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow: hidden;
         }
 
-        .nav-btn:hover, .nav-btn.active {
-            background: var(--accent);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        /* Couleurs spécifiques des boutons */
+        .btn-port:hover, .btn-port.active {
+            background: var(--theme-port-bg);
+            color: var(--theme-port-dark);
+            border-color: var(--theme-port-accent);
+            box-shadow: 0 8px 20px rgba(161, 136, 127, 0.3);
         }
 
-        /* --- CONTENU --- */
+        .btn-form:hover, .btn-form.active {
+            background: var(--theme-form-bg);
+            color: var(--theme-form-dark);
+            border-color: var(--theme-form-accent);
+            box-shadow: 0 8px 20px rgba(100, 181, 246, 0.3);
+        }
+
+        .btn-exp:hover, .btn-exp.active {
+            background: var(--theme-exp-bg);
+            color: var(--theme-exp-dark);
+            border-color: var(--theme-exp-accent);
+            box-shadow: 0 8px 20px rgba(229, 115, 115, 0.3);
+        }
+
+        /* --- SECTIONS --- */
         .section-content {
             display: none;
             max-width: 1200px; margin: 0 auto 80px; padding: 0 20px;
-            animation: slideUp 0.6s ease;
+            animation: fadeIn 0.6s ease;
         }
         .section-content.active { display: block; }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- FORMATION HORIZONTALE --- */
-        .timeline-horizontal {
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-            margin-top: 40px;
-            padding: 20px 0;
-        }
-        
-        /* La ligne horizontale */
-        .timeline-horizontal::before {
-            content: '';
-            position: absolute;
-            top: 50px; left: 0; right: 0;
-            height: 4px;
-            background: #e0e0e0;
-            z-index: -1;
-            border-radius: 2px;
-        }
-
-        .timeline-item-h {
-            flex: 1;
-            text-align: center;
-            padding: 0 15px;
-            position: relative;
-            transition: transform 0.3s;
-        }
-
-        .timeline-item-h:hover { transform: translateY(-5px); }
-
-        .timeline-dot-h {
-            width: 24px; height: 24px;
-            background: var(--accent);
-            border: 4px solid white;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-            position: relative;
-            z-index: 2;
-            top: 18px; /* Ajustement pour s'aligner sur la ligne */
-        }
-
-        .timeline-card {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            position: relative;
-            margin-top: 30px;
-            border-top: 4px solid var(--accent);
-        }
-
-        /* Flèche vers le haut pour la carte */
-        .timeline-card::before {
-            content: ''; position: absolute; top: -10px; left: 50%;
-            transform: translateX(-50%);
-            border-width: 0 10px 10px 10px;
-            border-color: transparent transparent var(--accent) transparent;
-            border-style: solid;
-        }
-
-        .t-date { display: inline-block; background: var(--primary); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-bottom: 10px; }
-        .t-title { font-size: 1.1rem; color: var(--primary); margin: 0 0 5px; font-weight: 700; }
-        .t-place { color: var(--highlight); font-size: 0.9rem; font-weight: 500; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- BARRE RECHERCHE --- */
-        .search-wrapper { position: relative; max-width: 500px; margin: 0 auto 40px; }
+        .search-wrapper { max-width: 500px; margin: 0 auto 40px; }
         .search-input {
-            width: 100%; padding: 15px 50px 15px 25px;
+            width: 100%; padding: 15px 25px;
             border-radius: 50px; border: 2px solid transparent;
             background: white; font-size: 1rem;
             box-shadow: var(--shadow); transition: all 0.3s;
             outline: none; font-family: 'Open Sans', sans-serif;
         }
-        .search-input:focus { border-color: var(--accent); box-shadow: 0 5px 15px rgba(52, 152, 219, 0.15); }
+        .search-input:focus { border-color: var(--theme-port-accent); }
 
         /* --- FILTRES --- */
         .filters { text-align: center; margin-bottom: 40px; }
         .filter-tag {
-            display: inline-block; margin: 5px; padding: 8px 20px;
+            display: inline-block; margin: 5px; padding: 6px 18px;
             border-radius: 30px; background: white; color: var(--text-light);
             cursor: pointer; font-size: 0.9rem; font-weight: 600;
             box-shadow: var(--shadow); transition: all 0.2s;
             border: 1px solid transparent;
         }
         .filter-tag:hover, .filter-tag.active {
-            background: var(--primary); color: white; transform: scale(1.05);
+            background: var(--theme-port-accent); color: white;
         }
 
         /* --- GRILLE PROJETS --- */
         .projects-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 30px;
         }
 
         .card {
-            background: white; border-radius: 16px; overflow: hidden;
-            box-shadow: var(--shadow); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer; display: flex; flex-direction: column;
-            border: 1px solid rgba(0,0,0,0.02);
+            background: white; border-radius: 12px; overflow: hidden;
+            box-shadow: var(--shadow); transition: all 0.3s;
+            cursor: pointer; border: 1px solid rgba(0,0,0,0.02);
+            display: flex; flex-direction: column;
         }
-
-        .card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
+        .card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
 
         .card-img-wrapper { height: 200px; overflow: hidden; position: relative; }
         .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-        .card:hover .card-img { transform: scale(1.1); }
-        
-        .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
-        
-        .tag { font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 6px; margin-right: 5px; text-transform: uppercase; display: inline-block; margin-bottom: 5px;}
-        /* Couleurs pastels modernes */
-        .tag-Python { background: #e0f7fa; color: #006064; }
-        .tag-R { background: #e8f5e9; color: #1b5e20; }
-        .tag-SQL { background: #fff3e0; color: #e65100; }
-        .tag-PowerBI { background: #fff8e1; color: #f57f17; }
-        .tag-SAS { background: #f3e5f5; color: #4a148c; }
-        
-        .card-title { font-size: 1.2rem; margin: 10px 0; color: var(--primary); font-weight: 700; }
-        .card-summary { color: var(--text-light); font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; flex-grow: 1; }
+        .card:hover .card-img { transform: scale(1.08); }
+
+        .card-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-title { font-size: 1.15rem; margin: 10px 0; color: var(--text-main); font-weight: 700; }
+        .card-summary { color: #777; font-size: 0.9rem; flex-grow: 1; margin-bottom: 15px; }
+
+        /* Tags projets */
+        .tag { font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; margin-right: 5px; text-transform: uppercase; background: #eee; color: #555; }
         
         .card-footer {
-            margin-top: auto; padding-top: 15px; border-top: 1px solid #f0f0f0;
+            border-top: 1px solid #f0f0f0; padding-top: 15px;
             display: flex; justify-content: space-between; align-items: center;
-            font-size: 0.85rem; color: #aaa;
+            font-size: 0.8rem; color: #aaa;
         }
-        .view-btn { color: var(--accent); font-weight: 600; }
+        .view-btn { color: var(--theme-port-dark); font-weight: 600; }
 
-        /* --- EXPÉRIENCE VERTICALE (Design propre) --- */
-        .exp-item {
-            background: white; border-radius: 12px; padding: 30px;
-            margin-bottom: 30px; box-shadow: var(--shadow);
-            border-left: 5px solid var(--accent);
-            display: flex; gap: 20px; align-items: flex-start;
-            transition: transform 0.3s;
+
+        /* --- TIMELINE HORIZONTALE (Formation & Expérience) --- */
+        .timeline-horizontal {
+            display: flex; justify-content: space-between; position: relative;
+            margin-top: 40px; padding: 20px 0;
         }
-        .exp-item:hover { transform: translateX(10px); }
-        .exp-icon { 
-            background: var(--bg-color); color: var(--accent); 
-            min-width: 50px; height: 50px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; 
-            font-size: 1.5rem; font-weight: bold;
+        .timeline-horizontal::before {
+            content: ''; position: absolute; top: 40px; left: 0; right: 0; height: 3px;
+            background: #e0e0e0; z-index: -1; border-radius: 2px;
         }
-        .exp-content h3 { margin: 0 0 5px; color: var(--primary); }
-        .exp-meta { color: var(--highlight); font-weight: 600; font-size: 0.9rem; margin-bottom: 10px; display: block; }
-        .exp-desc ul { padding-left: 20px; color: var(--text-light); margin: 0; }
+
+        .timeline-col {
+            flex: 1; text-align: center; padding: 0 15px; position: relative;
+        }
+
+        .timeline-dot {
+            width: 20px; height: 20px; border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 4px solid white;
+            box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+            background: #ccc;
+            position: relative; top: 9px;
+            transition: all 0.3s;
+        }
+
+        .timeline-card {
+            background: white; padding: 25px; border-radius: 12px;
+            box-shadow: var(--shadow); position: relative; margin-top: 25px;
+            transition: transform 0.3s; border-top: 4px solid transparent;
+        }
+        .timeline-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+
+        /* Flèche carte */
+        .timeline-card::before {
+            content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+            border-width: 0 10px 10px 10px; border-style: solid;
+            border-color: transparent transparent white transparent;
+        }
+
+        /* Thème Formation (Bleu) */
+        .theme-blue .timeline-dot { background: var(--theme-form-accent); }
+        .theme-blue .timeline-card { border-top-color: var(--theme-form-accent); }
+        .theme-blue h3 { color: var(--theme-form-dark); margin: 0 0 5px; font-size: 1.1rem; }
+        .theme-blue .t-date { background: var(--theme-form-bg); color: var(--theme-form-dark); padding: 3px 10px; border-radius: 15px; font-weight: bold; font-size: 0.8rem; display: inline-block; margin-bottom: 10px; }
+
+        /* Thème Expérience (Rouge) */
+        .theme-red .timeline-dot { background: var(--theme-exp-accent); }
+        .theme-red .timeline-card { border-top-color: var(--theme-exp-accent); }
+        .theme-red h3 { color: var(--theme-exp-dark); margin: 0 0 5px; font-size: 1.1rem; }
+        .theme-red .t-date { background: var(--theme-exp-bg); color: var(--theme-exp-dark); padding: 3px 10px; border-radius: 15px; font-weight: bold; font-size: 0.8rem; display: inline-block; margin-bottom: 10px; }
+        
+        .t-place { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 10px; color: #555; }
+        .t-desc { font-size: 0.85rem; color: #777; text-align: left; }
+        .t-desc ul { padding-left: 20px; margin: 0; }
 
         /* --- MODALE --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(44, 62, 80, 0.85); backdrop-filter: blur(5px);
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(4px);
             display: none; justify-content: center; align-items: center; z-index: 1000;
-            opacity: 0; transition: opacity 0.3s;
         }
-        .modal-overlay.open { display: flex; opacity: 1; }
+        .modal-overlay.open { display: flex; animation: fadeIn 0.3s; }
         
         .modal-box {
             background: white; width: 90%; max-width: 900px; max-height: 90vh;
-            border-radius: 15px; overflow-y: auto; position: relative;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            border-radius: 12px; overflow-y: auto; position: relative;
         }
-        .modal-header { padding: 25px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: white; z-index: 10;}
+        .modal-header { padding: 20px 30px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; background: white; position: sticky; top: 0; z-index: 2; }
         .modal-body { padding: 30px; }
-        .modal-close { font-size: 2rem; color: var(--text-light); background: none; border: none; cursor: pointer; }
+        .modal-close { font-size: 2rem; cursor: pointer; border: none; background: none; color: #999; }
         
-        .modal-section-title { color: var(--primary); border-bottom: 2px solid var(--accent); display: inline-block; margin-bottom: 10px; padding-bottom: 5px; margin-top: 25px; }
-
-        /* RESPONSIVE */
+        /* Responsive */
         @media (max-width: 768px) {
             .timeline-horizontal { flex-direction: column; }
-            .timeline-horizontal::before { left: 20px; width: 3px; height: 100%; top: 0; }
-            .timeline-item-h { text-align: left; padding-left: 50px; margin-bottom: 30px; }
-            .timeline-dot-h { position: absolute; left: 10px; top: 0; margin: 0; }
-            .timeline-card::before { left: -10px; top: 10px; transform: rotate(-90deg); border-color: transparent white transparent transparent; }
-            .timeline-card { margin-top: 0; border-top: none; border-left: 4px solid var(--accent); }
-            .exp-item { flex-direction: column; }
+            .timeline-horizontal::before { left: 15px; width: 3px; height: 100%; top: 0; }
+            .timeline-col { text-align: left; padding-left: 45px; margin-bottom: 30px; }
+            .timeline-dot { position: absolute; left: 6px; top: 0; margin: 0; }
+            .timeline-card::before { left: -10px; top: 15px; transform: rotate(-90deg); border-color: transparent white transparent transparent; }
         }
     </style>
 </head>
 <body>
 
-<div class="background-anim">
-    <ul class="circles">
-        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
-    </ul>
+<div class="arcs-container">
+    <div class="arc arc-left-1"></div>
+    <div class="arc arc-left-2"></div>
+    <div class="arc arc-right-1"></div>
+    <div class="arc arc-right-2"></div>
 </div>
 
 <header>
     <div class="profile-container">
-        <img src="images/profile.jpg" alt="Oscar JG" class="profile-img" onerror="this.src='https://via.placeholder.com/170?text=O'">
+        <img src="images/profile.jpg" alt="Oscar JG" class="profile-img" onerror="this.src='https://via.placeholder.com/160?text=O'">
     </div>
     <h1>Oscar JOSEPH-GENESLAY</h1>
     <h2>Data Scientist & Web Analyst</h2>
     <p class="bio">
-        Expert en transformation de données brutes en décisions stratégiques.
-        <br>Actuellement en Master au CFA Cnam.
+        Transformation de données complexes en solutions concrètes.
+        <br>Master Mégadonnées et Analyse Sociale au CFA Cnam.
     </p>
 </header>
 
 <nav>
-    <button class="nav-btn active" onclick="switchTab('portfolio', this)">Mon Portfolio</button>
-    <button class="nav-btn" onclick="switchTab('formation', this)">Formation</button>
-    <button class="nav-btn" onclick="switchTab('experience', this)">Expérience Pro</button>
+    <button class="nav-btn btn-port active" onclick="switchTab('portfolio', this, 'port')">Mon Portfolio</button>
+    <button class="nav-btn btn-form" onclick="switchTab('formation', this, 'form')">Formation</button>
+    <button class="nav-btn btn-exp" onclick="switchTab('experience', this, 'exp')">Expérience Pro</button>
 </nav>
 
 <section id="portfolio" class="section-content active">
@@ -358,125 +352,129 @@
         </div>
 </section>
 
-<section id="formation" class="section-content">
+<section id="formation" class="section-content theme-blue">
     <div class="timeline-horizontal">
         
-        <div class="timeline-item-h">
-            <div class="timeline-dot-h"></div>
+        <div class="timeline-col">
+            <div class="timeline-dot"></div>
             <div class="timeline-card">
                 <span class="t-date">2022</span>
-                <h3 class="t-title">Baccalauréat Général</h3>
-                <span class="t-place">Spécialités NSI & Maths</span>
-                <p style="font-size:0.9rem; color:#777; margin-top:10px;">Mention Bien. Premiers pas dans l'algorithmie.</p>
+                <h3>Baccalauréat Général</h3>
+                <span class="t-place">Lycée Général</span>
+                <div class="t-desc">Spécialités NSI et Maths. Mention Bien.</div>
             </div>
         </div>
 
-        <div class="timeline-item-h">
-            <div class="timeline-dot-h"></div>
+        <div class="timeline-col">
+            <div class="timeline-dot"></div>
             <div class="timeline-card">
                 <span class="t-date">2022 - 2025</span>
-                <h3 class="t-title">BUT Science des Données</h3>
+                <h3>BUT Science des Données</h3>
                 <span class="t-place">IUT Grand Ouest Normandie</span>
-                <p style="font-size:0.9rem; color:#777; margin-top:10px;">Formation intensive : Statistique, Programmation, Dataviz.</p>
+                <div class="t-desc">Cursus complet : Statistique décisionnelle, Programmation, Dataviz.</div>
             </div>
         </div>
 
-        <div class="timeline-item-h">
-            <div class="timeline-dot-h"></div>
+        <div class="timeline-col">
+            <div class="timeline-dot"></div>
             <div class="timeline-card">
                 <span class="t-date">Actuellement</span>
-                <h3 class="t-title">Master Mégadonnées</h3>
+                <h3>Master Mégadonnées</h3>
                 <span class="t-place">CFA Cnam, Saint-Denis</span>
-                <p style="font-size:0.9rem; color:#777; margin-top:10px;">Spécialisation Big Data & Analyse Sociale.</p>
+                <div class="t-desc">Spécialisation Big Data & Analyse Sociale.</div>
             </div>
         </div>
 
     </div>
 </section>
 
-<section id="experience" class="section-content">
-    
-    <div class="exp-item">
-        <div class="exp-icon">W</div>
-        <div class="exp-content">
-            <h3>Web Analyst (Alternance)</h3>
-            <span class="exp-meta">Sept. 2025 - Aujourd'hui | Wonderbox</span>
-            <div class="exp-desc">
-                <ul>
-                    <li>Tracking e-commerce avancé (GA4, GTM).</li>
-                    <li>Personnalisation de l'expérience utilisateur (AB Tasty).</li>
-                    <li>Gestion de la conformité des données (Didomi).</li>
-                </ul>
+<section id="experience" class="section-content theme-red">
+    <div class="timeline-horizontal">
+        
+        <div class="timeline-col">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <span class="t-date">Avril - Juin 2024</span>
+                <h3>Consultant BI (Stage)</h3>
+                <span class="t-place">KPMG Nord Normandie</span>
+                <div class="t-desc">
+                    <ul>
+                        <li>Tableaux de bord financiers (PowerBI).</li>
+                        <li>Audit de données RSE.</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="exp-item">
-        <div class="exp-icon">U</div>
-        <div class="exp-content">
-            <h3>Assistant chargé d'études statistiques</h3>
-            <span class="exp-meta">Sept. 2024 - Août 2025 | Observatoire UNICAEN</span>
-            <div class="exp-desc">
-                <ul>
-                    <li>Automatisation de scripts de nettoyage sous R.</li>
-                    <li>Pilotage d'enquêtes sociologiques.</li>
-                    <li>Datavisualisation sous SphinxIQ3.</li>
-                </ul>
+        <div class="timeline-col">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <span class="t-date">Sept 2024 - Août 2025</span>
+                <h3>Chargé d'études stats</h3>
+                <span class="t-place">Observatoire UNICAEN</span>
+                <div class="t-desc">
+                    <ul>
+                        <li>Automatisation R.</li>
+                        <li>Enquêtes sociologiques.</li>
+                        <li>Dataviz SphinxIQ3.</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="exp-item">
-        <div class="exp-icon">K</div>
-        <div class="exp-content">
-            <h3>Consultant BI (Stage)</h3>
-            <span class="exp-meta">Avril 2024 - Juin 2024 | KPMG</span>
-            <div class="exp-desc">
-                <ul>
-                    <li>Conception de tableaux de bord financiers (PowerBI).</li>
-                    <li>Audit de données RSE.</li>
-                </ul>
+        <div class="timeline-col">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <span class="t-date">Sept 2025 - Actuel</span>
+                <h3>Web Analyst (Alternance)</h3>
+                <span class="t-place">Wonderbox</span>
+                <div class="t-desc">
+                    <ul>
+                        <li>Tracking GA4 & GTM.</li>
+                        <li>A/B Testing (AB Tasty).</li>
+                        <li>Conformité RGPD.</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
 
+    </div>
 </section>
 
 <div id="modalOverlay" class="modal-overlay" onclick="closeModal(event)">
     <div class="modal-box">
         <div class="modal-header">
-            <h3 id="mTitle" style="margin:0; color:var(--primary);">Titre</h3>
+            <h3 id="mTitle" style="margin:0; color:#333;">Titre</h3>
             <button class="modal-close" onclick="closeModal(event)">&times;</button>
         </div>
         <div class="modal-body">
-            <div style="text-align:center; background:#f4f4f4; padding:10px; border-radius:8px; margin-bottom:20px;">
-                <img id="mImg" src="" style="max-height:300px; max-width:100%; border-radius:4px;">
+            <div style="text-align:center; background:#f9f9f9; padding:10px; border-radius:8px; margin-bottom:20px;">
+                <img id="mImg" src="" style="max-height:350px; max-width:100%;">
             </div>
-            
             <div id="mTags" style="margin-bottom:20px;"></div>
+            
+            <h4 style="color:#5d4037; border-bottom:1px solid #ddd; padding-bottom:5px;">Contexte</h4>
+            <p id="mDesc" style="color:#666;"></p>
 
-            <h4 class="modal-section-title">Contexte</h4>
-            <p id="mDesc" style="color:#555;"></p>
+            <h4 style="color:#5d4037; border-bottom:1px solid #ddd; padding-bottom:5px; margin-top:20px;">Démarche</h4>
+            <p id="mApproach" style="color:#666;"></p>
 
-            <h4 class="modal-section-title">Technique</h4>
-            <p id="mApproach" style="color:#555;"></p>
-
-            <h4 class="modal-section-title">Compétences</h4>
-            <p id="mSkills" style="color:#555;"></p>
+            <h4 style="color:#5d4037; border-bottom:1px solid #ddd; padding-bottom:5px; margin-top:20px;">Compétences</h4>
+            <p id="mSkills" style="color:#666;"></p>
         </div>
     </div>
 </div>
 
 <script>
-    // DONNÉES JSON (Source PDF)
+    // --- DONNEES PROJETS ---
     const projects = [
         {
             title: "Enquête Batman & Population de Gotham",
             tags: ["Python", "SQL"],
             img: "images/p1.jpg",
-            summary: "Analyse de données croisées CSV/SQL pour identifier un individu spécifique.",
-            description: "Projet divisé en deux parties : retrouver l'identité de Batman pour le chef de la police et analyser les caractéristiques démographiques pour le maire.",
-            approach: "Agrégation de données CSV, création d'une base SQLite. Croisement d'indices pour filtrer les individus.",
+            summary: "Croisement de données CSV et SQL pour identifier un individu.",
+            description: "Projet divisé en deux parties : retrouver l'identité de Batman et analyser les caractéristiques démographiques.",
+            approach: "Agrégation de données CSV, création d'une base SQLite. Croisement d'indices.",
             skills: "Manipulation de grands jeux de données, Logique SQL/Python.",
             place: "Université de Caen"
         },
@@ -484,18 +482,18 @@
             title: "Automatisation de bulletins scolaires",
             tags: ["Python"],
             img: "images/p2.jpg",
-            summary: "Script Python pour générer des bulletins à partir de fichiers bruts.",
-            description: "Création d'un système pour calculer les moyennes élèves/matières à partir de fichiers hétérogènes (txt, csv).",
-            approach: "Nettoyage de données atypiques, conversion de types, utilisation de map().",
-            skills: "Nettoyage de données (Data Cleaning), Algorithmique.",
+            summary: "Script Python pour générer des bulletins scolaires.",
+            description: "Création d'un système pour calculer les moyennes élèves/matières à partir de fichiers hétérogènes.",
+            approach: "Nettoyage de données atypiques, conversion de types, algorithmique.",
+            skills: "Nettoyage de données (Data Cleaning), Gestion d'erreurs.",
             place: "Université de Caen"
         },
         {
             title: "Analyse des locations Citibike NYC",
             tags: ["R"],
             img: "images/p3.jpg",
-            summary: "Visualisation de données temporelles sur la mobilité urbaine à NYC.",
-            description: "Étude complète des données de location de vélos (juin 2022) pour comprendre les habitudes des usagers.",
+            summary: "Visualisation de la mobilité urbaine à New York.",
+            description: "Étude complète des données de location de vélos (juin 2022).",
             approach: "Utilisation de RStudio pour filtrer, organiser et visualiser les données.",
             skills: "Programmation R, Analyse exploratoire.",
             place: "Université de Caen"
@@ -504,9 +502,9 @@
             title: "Régression : Indice de masse maigre",
             tags: ["R"],
             img: "images/p4.jpg",
-            summary: "Modélisation statistique liant morphologie et masse maigre.",
+            summary: "Modélisation liant morphologie et masse maigre.",
             description: "Étude de la corrélation entre l'indice de masse maigre et des mesures morphologiques.",
-            approach: "Nettoyage, Nuages de points, Calcul du coefficient de détermination, Régression linéaire simple.",
+            approach: "Nettoyage, Nuages de points, Régression linéaire simple.",
             skills: "Modélisation statistique, Analyse de corrélation.",
             place: "Université de Caen"
         },
@@ -514,10 +512,10 @@
             title: "Datawarehouse Météo & Pollution",
             tags: ["Python", "SQL"],
             img: "images/p5.jpg",
-            summary: "Pipeline ETL complet : Import, nettoyage et stockage MySQL.",
-            description: "Construction d'un entrepôt de données intégrant des relevés météorologiques et de pollution.",
-            approach: "Scripts Python (Pandas) pour nettoyer les CSV. Insertion automatique dans MySQL.",
-            skills: "Architecture de données (ETL), SQL, Python.",
+            summary: "Pipeline ETL complet vers MySQL.",
+            description: "Construction d'un entrepôt de données météo et pollution.",
+            approach: "Scripts Python (Pandas) pour nettoyer. Insertion MySQL.",
+            skills: "ETL, SQL, Python.",
             place: "Université de Caen"
         },
         {
@@ -527,103 +525,108 @@
             summary: "Prévision des nuitées hôtelières en Normandie.",
             description: "Analyse des données INSEE (2011-2023) pour comprendre la dynamique touristique.",
             approach: "Régression linéaire par morceaux, coefficients saisonniers, prévision à N+1.",
-            skills: "Analyse de séries chronologiques, Prévision statistique.",
+            skills: "Séries chronologiques, Prévision.",
             place: "Université de Caen"
         },
         {
             title: "Prédiction Poids des Manchots",
             tags: ["R"],
             img: "images/p7.jpg",
-            summary: "Comparaison de modèles de régression multiple.",
-            description: "Estimation du poids des manchots selon leurs caractéristiques physiques.",
-            approach: "Comparaison de modèles : Régression simple, ANOVA, ANCOVA et Régression multiple.",
-            skills: "Statistiques inférentielles, Sélection de modèles.",
+            summary: "Régression multiple pour prédire une variable biologique.",
+            description: "Estimation du poids des manchots selon caractéristiques physiques.",
+            approach: "Comparaison : ANOVA, ANCOVA, Régression multiple.",
+            skills: "Statistiques inférentielles, Modèles.",
             place: "Université de Caen"
         },
         {
             title: "Storytelling Dow Jones",
             tags: ["PowerBI"],
             img: "images/p8.jpg",
-            summary: "Narration visuelle et interactive des crises boursières.",
-            description: "Création d'une narration visuelle autour de l'évolution de l'indice Dow Jones.",
-            approach: "Utilisation des signets (bookmarks) PowerBI pour figer des instants clés.",
-            skills: "Data Visualization, Storytelling.",
+            summary: "Narration visuelle interactive des crises boursières.",
+            description: "Création d'un storytelling sur l'indice Dow Jones.",
+            approach: "Utilisation des signets (bookmarks) PowerBI.",
+            skills: "Dataviz, Storytelling.",
             place: "Université de Caen"
         },
         {
             title: "Épidémiologie : Cancer du Poumon",
             tags: ["SAS", "R"],
             img: "images/p9.jpg",
-            summary: "Analyse de survie (Modèle de Cox) sur la cohorte AGRICAN.",
-            description: "Analyse statistique de données de santé pour lier pratiques agricoles et cancer.",
-            approach: "Traitement SAS, Tests Chi-2/Student sous R, Modèle de Cox.",
-            skills: "Biostatistiques, Modèle de Cox, SAS, R.",
+            summary: "Modèle de Cox sur la cohorte AGRICAN.",
+            description: "Lien entre pratiques agricoles et cancer du poumon.",
+            approach: "Traitement SAS, Tests R, Modèle de Cox.",
+            skills: "Biostatistiques, SAS, R.",
             place: "Université de Caen"
         },
         {
             title: "NoSQL : Migration Olist",
             tags: ["Python", "NoSQL"],
             img: "images/p10.jpg",
-            summary: "Migration e-commerce vers MongoDB et optimisation.",
-            description: "Analyse de l'activité commerciale d'Olist en passant d'un format CSV à une base NoSQL.",
-            approach: "Script Python pour l'insertion. Création d'index pour optimiser les temps.",
-            skills: "Bases de données NoSQL (MongoDB), Optimisation.",
+            summary: "Migration e-commerce vers MongoDB.",
+            description: "Passage d'un format CSV à une base NoSQL MongoDB.",
+            approach: "Script Python pymongo, indexation.",
+            skills: "NoSQL, MongoDB, Optimisation.",
             place: "Université de Caen"
         },
         {
             title: "NLP & Datamining : Avis Clients",
             tags: ["Python"],
             img: "images/p11.jpg",
-            summary: "Analyse de sentiments (Deep Learning) sur commentaires.",
-            description: "Traitement du langage naturel sur les commentaires clients pour prédire leur satisfaction.",
-            approach: "NLP (Stop words, Lemmatisation). Clustering SVD. Modèle de Deep Learning.",
-            skills: "Machine Learning, Deep Learning, NLP.",
+            summary: "Analyse de sentiments (Deep Learning).",
+            description: "Prédiction de la satisfaction client via NLP.",
+            approach: "NLP, Clustering SVD, Deep Learning.",
+            skills: "Machine Learning, NLP.",
             place: "Université de Caen"
         },
         {
-            title: "Big Data Agricole : Modélisation",
+            title: "Big Data Agricole",
             tags: ["R"],
             img: "images/p12.jpg",
-            summary: "Comparaison de modèles ML avancés sur données massives.",
-            description: "Prédiction de l'état de santé à partir de ratios d'activités agricoles.",
-            approach: "ACP, Bootstrap. Comparaison : Forêts Aléatoires, Boosting, Réseaux de neurones.",
-            skills: "Big Data, Machine Learning avancé.",
+            summary: "Modèles ML avancés sur données massives.",
+            description: "Prédiction santé via ratios activités agricoles.",
+            approach: "ACP, Bootstrap, Forêts Aléatoires, Réseaux de neurones.",
+            skills: "Big Data, Machine Learning.",
             place: "Université de Caen"
         }
     ];
 
     let currentTag = 'all';
 
-    function switchTab(tabId, btn) {
+    // --- FONCTIONS ---
+    function switchTab(tabId, btn, theme) {
         document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
         document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(tabId).classList.add('active');
         btn.classList.add('active');
+        
+        // Change la couleur de fond global subtilement
+        if(theme === 'port') document.body.style.backgroundColor = '#fdfbf7'; // Beige très clair
+        if(theme === 'form') document.body.style.backgroundColor = '#f0f8ff'; // Bleu très clair
+        if(theme === 'exp') document.body.style.backgroundColor = '#fff5f5';  // Rouge très clair
     }
 
-    function renderProjects(filteredProjects) {
+    function renderProjects(list) {
         const grid = document.getElementById('grid');
         grid.innerHTML = '';
-        if (filteredProjects.length === 0) { grid.innerHTML = '<p>Aucun résultat.</p>'; return; }
+        if(list.length === 0) { grid.innerHTML = '<p>Aucun projet.</p>'; return; }
 
-        filteredProjects.forEach((p, index) => {
+        list.forEach(p => {
             const originalIndex = projects.indexOf(p);
-            const tagsHtml = p.tags.map(t => `<span class="tag tag-${t}">${t}</span>`).join('');
-            
+            const tags = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
             const card = document.createElement('div');
             card.className = 'card';
             card.onclick = () => openModal(originalIndex);
             card.innerHTML = `
                 <div class="card-img-wrapper">
-                    <img src="${p.img}" class="card-img" onerror="this.src='https://via.placeholder.com/400x250/eee/aaa?text=${p.title.charAt(0)}'">
+                    <img src="${p.img}" class="card-img" onerror="this.src='https://via.placeholder.com/400x200?text=${p.title.charAt(0)}'">
                 </div>
                 <div class="card-body">
-                    <div style="margin-bottom:10px;">${tagsHtml}</div>
+                    <div style="margin-bottom:10px;">${tags}</div>
                     <h3 class="card-title">${p.title}</h3>
                     <p class="card-summary">${p.summary}</p>
                     <div class="card-footer">
                         <span>${p.place}</span>
-                        <span class="view-btn">Détails →</span>
+                        <span class="view-btn">Voir →</span>
                     </div>
                 </div>
             `;
@@ -633,42 +636,43 @@
 
     function filterProjects() {
         const query = document.getElementById('searchBar').value.toLowerCase();
-        const filtered = projects.filter(p => {
-            const matchTag = (currentTag === 'all') || p.tags.includes(currentTag);
-            const matchSearch = p.title.toLowerCase().includes(query) || p.description.toLowerCase().includes(query) || p.tags.join(' ').toLowerCase().includes(query);
-            return matchTag && matchSearch;
+        const res = projects.filter(p => {
+            const tagMatch = currentTag === 'all' || p.tags.includes(currentTag);
+            const textMatch = p.title.toLowerCase().includes(query) || p.description.toLowerCase().includes(query);
+            return tagMatch && textMatch;
         });
-        renderProjects(filtered);
+        renderProjects(res);
     }
 
-    function setTagFilter(tag, btnElement) {
+    function setTagFilter(tag, btn) {
         currentTag = tag;
-        document.querySelectorAll('.filter-tag').forEach(el => el.classList.remove('active'));
-        btnElement.classList.add('active');
+        document.querySelectorAll('.filter-tag').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
         filterProjects();
     }
 
+    // Modal
     const modal = document.getElementById('modalOverlay');
-    function openModal(index) {
-        const p = projects[index];
+    function openModal(idx) {
+        const p = projects[idx];
         document.getElementById('mTitle').innerText = p.title;
         let img = document.getElementById('mImg');
-        img.src = p.img; img.onerror = function() { this.src = `https://via.placeholder.com/600x300?text=${p.title}`; };
-        document.getElementById('mTags').innerHTML = p.tags.map(t => `<span class="tag tag-${t}">${t}</span>`).join('');
+        img.src = p.img; img.onerror = function() { this.src=`https://via.placeholder.com/600x300?text=${p.title}`; };
+        document.getElementById('mTags').innerHTML = p.tags.map(t=>`<span class="tag" style="background:#5d4037; color:white;">${t}</span>`).join('');
         document.getElementById('mDesc').innerText = p.description;
         document.getElementById('mApproach').innerText = p.approach;
         document.getElementById('mSkills').innerText = p.skills;
         modal.classList.add('open');
         document.body.style.overflow = 'hidden';
     }
-
     function closeModal(e) {
-        if (e.target === modal || e.target.classList.contains('modal-close')) {
+        if(e.target===modal || e.target.classList.contains('modal-close')) {
             modal.classList.remove('open');
             document.body.style.overflow = 'auto';
         }
     }
 
+    // Init
     renderProjects(projects);
 </script>
 
