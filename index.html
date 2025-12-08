@@ -14,25 +14,26 @@
             --white: #ffffff;
             --bg-global: #fdfdfd;
             
-            /* Thèmes par section */
-            /* 1. Portfolio (Beige/Terre) */
-            --theme-port-bg: #fdfbf7;
-            --theme-port-accent: #a1887f;
-            --theme-port-dark: #5d4037;
+            /* THÈMES PAR SECTION */
+            
+            /* 1. Portfolio (Nouveau : Vert Émeraude / Teal - Pro & Tech) */
+            --theme-port-bg: #e0f2f1;      /* Fond très clair */
+            --theme-port-accent: #009688;  /* Couleur principale */
+            --theme-port-dark: #004d40;    /* Couleur foncée (Textes) */
 
-            /* 2. Formation (Bleu Pâle) */
-            --theme-form-bg: #f0f8ff;
-            --theme-form-accent: #64b5f6;
-            --theme-form-dark: #1976d2;
+            /* 2. Formation (Bleu Ciel - Académique) */
+            --theme-form-bg: #e3f2fd;
+            --theme-form-accent: #2196f3;
+            --theme-form-dark: #0d47a1;
 
-            /* 3. Expérience (Rouge Pâle/Cnam) */
-            --theme-exp-bg: #fff5f5;
-            --theme-exp-accent: #e57373;
-            --theme-exp-dark: #c0392b;
+            /* 3. Expérience (Rouge - Dynamique/Cnam) */
+            --theme-exp-bg: #ffebee;
+            --theme-exp-accent: #ef5350;
+            --theme-exp-dark: #b71c1c;
 
-            /* Ombres */
-            --shadow: 0 10px 30px rgba(0,0,0,0.05);
-            --shadow-hover: 0 20px 40px rgba(0,0,0,0.1);
+            /* Ombres et Visibilité des cartes */
+            --shadow-card: 0 10px 20px rgba(0,0,0,0.08), 0 6px 6px rgba(0,0,0,0.05);
+            --shadow-hover: 0 15px 30px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.08);
         }
 
         * { box-sizing: border-box; }
@@ -45,10 +46,10 @@
             padding: 0;
             line-height: 1.6;
             overflow-x: hidden;
-            transition: background-color 0.5s ease;
+            transition: background-color 0.6s ease;
         }
 
-        /* --- ANIMATION ARCS DE CERCLE --- */
+        /* --- ANIMATION ARCS DE CERCLE (Version Enrichie) --- */
         .arcs-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1; overflow: hidden; pointer-events: none;
@@ -57,58 +58,42 @@
         .arc {
             position: absolute;
             border-radius: 50%;
-            border: 2px solid rgba(0,0,0,0.03);
+            border: 2px solid rgba(0,0,0,0.04);
             transition: all 1s ease;
         }
 
-        /* Arc Gauche */
-        .arc-left-1 {
-            width: 60vh; height: 60vh;
-            left: -30vh; top: 20%;
-            border-right: 4px solid rgba(0,0,0,0.06);
-            animation: rotateArc 40s linear infinite;
-        }
-        .arc-left-2 {
-            width: 80vh; height: 80vh;
-            left: -40vh; top: 15%;
-            border-right: 2px solid rgba(0,0,0,0.04);
-            animation: rotateArcReverse 60s linear infinite;
-        }
+        /* Gauche */
+        .arc-1 { width: 50vh; height: 50vh; left: -25vh; top: 20%; border-right: 4px solid rgba(0,0,0,0.06); animation: rotate 40s linear infinite; }
+        .arc-2 { width: 70vh; height: 70vh; left: -35vh; top: 15%; border-right: 2px solid rgba(0,0,0,0.04); animation: rotateRev 60s linear infinite; }
+        
+        /* Droit */
+        .arc-3 { width: 60vh; height: 60vh; right: -30vh; bottom: 10%; border-left: 4px solid rgba(0,0,0,0.06); animation: rotate 50s linear infinite; }
+        .arc-4 { width: 80vh; height: 80vh; right: -40vh; bottom: 5%; border-left: 2px solid rgba(0,0,0,0.04); animation: rotateRev 70s linear infinite; }
+        
+        /* Nouveaux Cercles (Centre / Flottants) */
+        .arc-5 { width: 30vh; height: 30vh; left: 20%; top: 10%; border: 2px dashed rgba(0,0,0,0.03); animation: rotate 100s linear infinite; }
+        .arc-6 { width: 40vh; height: 40vh; right: 20%; top: 50%; border: 1px solid rgba(0,0,0,0.04); animation: rotateRev 80s linear infinite; }
+        .arc-7 { width: 15vh; height: 15vh; left: 50%; bottom: 10%; border: 3px solid rgba(0,0,0,0.02); animation: rotate 30s linear infinite; }
 
-        /* Arc Droit */
-        .arc-right-1 {
-            width: 70vh; height: 70vh;
-            right: -35vh; bottom: 10%;
-            border-left: 4px solid rgba(0,0,0,0.06);
-            animation: rotateArc 50s linear infinite;
-        }
-        .arc-right-2 {
-            width: 90vh; height: 90vh;
-            right: -45vh; bottom: 5%;
-            border-left: 2px solid rgba(0,0,0,0.04);
-            animation: rotateArcReverse 70s linear infinite;
-        }
-
-        @keyframes rotateArc { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes rotateArcReverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes rotateRev { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
 
         /* --- HEADER --- */
         header {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             padding: 50px 20px;
             text-align: center;
-            box-shadow: var(--shadow);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
             border-bottom: 1px solid rgba(0,0,0,0.05);
-            position: relative;
-            z-index: 10;
+            position: relative; z-index: 10;
         }
 
         .profile-img {
             width: 160px; height: 160px;
             border-radius: 50%; object-fit: cover;
             border: 4px solid white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             margin-bottom: 15px;
             transition: transform 0.3s;
         }
@@ -121,8 +106,7 @@
         /* --- NAVIGATION --- */
         nav {
             display: flex; justify-content: center; gap: 30px;
-            margin: 40px 0; padding: 0 20px;
-            flex-wrap: wrap;
+            margin: 40px 0; padding: 0 20px; flex-wrap: wrap;
         }
 
         .nav-btn {
@@ -134,32 +118,22 @@
             cursor: pointer;
             border-radius: 50px;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             font-family: 'Montserrat', sans-serif;
-            position: relative;
-            overflow: hidden;
         }
 
-        /* Couleurs spécifiques des boutons */
+        /* Couleurs Active Navigation */
         .btn-port:hover, .btn-port.active {
-            background: var(--theme-port-bg);
-            color: var(--theme-port-dark);
-            border-color: var(--theme-port-accent);
-            box-shadow: 0 8px 20px rgba(161, 136, 127, 0.3);
+            background: var(--theme-port-accent); color: white;
+            box-shadow: 0 8px 25px rgba(0, 150, 136, 0.4);
         }
-
         .btn-form:hover, .btn-form.active {
-            background: var(--theme-form-bg);
-            color: var(--theme-form-dark);
-            border-color: var(--theme-form-accent);
-            box-shadow: 0 8px 20px rgba(100, 181, 246, 0.3);
+            background: var(--theme-form-accent); color: white;
+            box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
         }
-
         .btn-exp:hover, .btn-exp.active {
-            background: var(--theme-exp-bg);
-            color: var(--theme-exp-dark);
-            border-color: var(--theme-exp-accent);
-            box-shadow: 0 8px 20px rgba(229, 115, 115, 0.3);
+            background: var(--theme-exp-accent); color: white;
+            box-shadow: 0 8px 25px rgba(239, 83, 80, 0.4);
         }
 
         /* --- SECTIONS --- */
@@ -177,63 +151,81 @@
             width: 100%; padding: 15px 25px;
             border-radius: 50px; border: 2px solid transparent;
             background: white; font-size: 1rem;
-            box-shadow: var(--shadow); transition: all 0.3s;
+            box-shadow: var(--shadow-card); transition: all 0.3s;
             outline: none; font-family: 'Open Sans', sans-serif;
         }
-        .search-input:focus { border-color: var(--theme-port-accent); }
+        .search-input:focus { border-color: var(--theme-port-accent); transform: scale(1.02); }
 
         /* --- FILTRES --- */
         .filters { text-align: center; margin-bottom: 40px; }
         .filter-tag {
-            display: inline-block; margin: 5px; padding: 6px 18px;
+            display: inline-block; margin: 5px; padding: 8px 20px;
             border-radius: 30px; background: white; color: var(--text-light);
             cursor: pointer; font-size: 0.9rem; font-weight: 600;
-            box-shadow: var(--shadow); transition: all 0.2s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: all 0.2s;
             border: 1px solid transparent;
         }
         .filter-tag:hover, .filter-tag.active {
-            background: var(--theme-port-accent); color: white;
+            background: var(--theme-port-accent); color: white; transform: scale(1.05);
         }
 
-        /* --- GRILLE PROJETS --- */
+        /* --- GRILLE PROJETS (Cartes Améliorées) --- */
         .projects-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 30px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 35px;
         }
 
         .card {
-            background: white; border-radius: 12px; overflow: hidden;
-            box-shadow: var(--shadow); transition: all 0.3s;
-            cursor: pointer; border: 1px solid rgba(0,0,0,0.02);
-            display: flex; flex-direction: column;
+            background: white; border-radius: 16px; overflow: hidden;
+            /* Visibilité renforcée */
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(0,0,0,0.06); 
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer; display: flex; flex-direction: column;
         }
-        .card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
 
-        .card-img-wrapper { height: 200px; overflow: hidden; position: relative; }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--theme-port-accent);
+        }
+
+        .card-img-wrapper { height: 210px; overflow: hidden; position: relative; border-bottom: 1px solid #f0f0f0; }
         .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
         .card:hover .card-img { transform: scale(1.08); }
 
-        .card-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
-        .card-title { font-size: 1.15rem; margin: 10px 0; color: var(--text-main); font-weight: 700; }
-        .card-summary { color: #777; font-size: 0.9rem; flex-grow: 1; margin-bottom: 15px; }
-
-        /* Tags projets */
-        .tag { font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; margin-right: 5px; text-transform: uppercase; background: #eee; color: #555; }
+        .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
         
+        .card-title { font-size: 1.25rem; margin: 12px 0; color: var(--text-main); font-weight: 700; }
+        .card-summary { color: #666; font-size: 0.95rem; line-height: 1.5; flex-grow: 1; margin-bottom: 20px; }
+        
+        /* TAGS COLORÉS */
+        .tags-container { margin-bottom: 8px; }
+        .tag { font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 6px; margin-right: 6px; text-transform: uppercase; display: inline-block; margin-bottom: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        
+        /* Couleurs Spécifiques des Outils */
+        .tag-Python { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+        .tag-R { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+        .tag-SQL { background: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
+        .tag-PowerBI { background: #fffde7; color: #f9a825; border: 1px solid #fff9c4; }
+        .tag-SAS { background: #f3e5f5; color: #8e24aa; border: 1px solid #e1bee7; }
+        .tag-NoSQL { background: #e0f2f1; color: #00695c; border: 1px solid #b2dfdb; }
+
         .card-footer {
             border-top: 1px solid #f0f0f0; padding-top: 15px;
             display: flex; justify-content: space-between; align-items: center;
-            font-size: 0.8rem; color: #aaa;
+            font-size: 0.85rem; color: #999; font-weight: 600;
         }
-        .view-btn { color: var(--theme-port-dark); font-weight: 600; }
+        .view-btn { color: var(--theme-port-accent); transition: color 0.2s; }
+        .card:hover .view-btn { color: var(--theme-port-dark); text-decoration: underline; }
 
 
         /* --- TIMELINE HORIZONTALE (Formation & Expérience) --- */
         .timeline-horizontal {
             display: flex; justify-content: space-between; position: relative;
-            margin-top: 40px; padding: 20px 0;
+            margin-top: 50px; padding: 20px 0;
         }
         .timeline-horizontal::before {
-            content: ''; position: absolute; top: 40px; left: 0; right: 0; height: 3px;
+            content: ''; position: absolute; top: 40px; left: 0; right: 0; height: 4px;
             background: #e0e0e0; z-index: -1; border-radius: 2px;
         }
 
@@ -242,21 +234,22 @@
         }
 
         .timeline-dot {
-            width: 20px; height: 20px; border-radius: 50%;
+            width: 24px; height: 24px; border-radius: 50%;
             margin: 0 auto 20px;
             border: 4px solid white;
-            box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
             background: #ccc;
-            position: relative; top: 9px;
+            position: relative; top: 8px;
             transition: all 0.3s;
         }
 
         .timeline-card {
             background: white; padding: 25px; border-radius: 12px;
-            box-shadow: var(--shadow); position: relative; margin-top: 25px;
+            box-shadow: var(--shadow-card); position: relative; margin-top: 30px;
             transition: transform 0.3s; border-top: 4px solid transparent;
+            text-align: left;
         }
-        .timeline-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        .timeline-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
 
         /* Flèche carte */
         .timeline-card::before {
@@ -268,23 +261,24 @@
         /* Thème Formation (Bleu) */
         .theme-blue .timeline-dot { background: var(--theme-form-accent); }
         .theme-blue .timeline-card { border-top-color: var(--theme-form-accent); }
-        .theme-blue h3 { color: var(--theme-form-dark); margin: 0 0 5px; font-size: 1.1rem; }
-        .theme-blue .t-date { background: var(--theme-form-bg); color: var(--theme-form-dark); padding: 3px 10px; border-radius: 15px; font-weight: bold; font-size: 0.8rem; display: inline-block; margin-bottom: 10px; }
+        .theme-blue h3 { color: var(--theme-form-dark); margin: 0 0 5px; font-size: 1.15rem; }
+        .theme-blue .t-date { background: var(--theme-form-bg); color: var(--theme-form-dark); padding: 4px 12px; border-radius: 15px; font-weight: bold; font-size: 0.8rem; display: inline-block; margin-bottom: 12px; }
 
         /* Thème Expérience (Rouge) */
         .theme-red .timeline-dot { background: var(--theme-exp-accent); }
         .theme-red .timeline-card { border-top-color: var(--theme-exp-accent); }
-        .theme-red h3 { color: var(--theme-exp-dark); margin: 0 0 5px; font-size: 1.1rem; }
-        .theme-red .t-date { background: var(--theme-exp-bg); color: var(--theme-exp-dark); padding: 3px 10px; border-radius: 15px; font-weight: bold; font-size: 0.8rem; display: inline-block; margin-bottom: 10px; }
+        .theme-red h3 { color: var(--theme-exp-dark); margin: 0 0 5px; font-size: 1.15rem; }
+        .theme-red .t-date { background: var(--theme-exp-bg); color: var(--theme-exp-dark); padding: 4px 12px; border-radius: 15px; font-weight: bold; font-size: 0.8rem; display: inline-block; margin-bottom: 12px; }
         
-        .t-place { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 10px; color: #555; }
-        .t-desc { font-size: 0.85rem; color: #777; text-align: left; }
+        .t-place { display: block; font-weight: 600; font-size: 0.95rem; margin-bottom: 12px; color: #555; border-bottom: 1px solid #eee; padding-bottom: 8px;}
+        .t-desc { font-size: 0.9rem; color: #666; }
         .t-desc ul { padding-left: 20px; margin: 0; }
+        .t-desc li { margin-bottom: 6px; }
 
         /* --- MODALE --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(4px);
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
             display: none; justify-content: center; align-items: center; z-index: 1000;
         }
         .modal-overlay.open { display: flex; animation: fadeIn 0.3s; }
@@ -292,28 +286,36 @@
         .modal-box {
             background: white; width: 90%; max-width: 900px; max-height: 90vh;
             border-radius: 12px; overflow-y: auto; position: relative;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
         }
-        .modal-header { padding: 20px 30px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; background: white; position: sticky; top: 0; z-index: 2; }
+        .modal-header { padding: 25px 30px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; background: white; position: sticky; top: 0; z-index: 5; }
+        .modal-title { margin: 0; font-size: 1.4rem; color: var(--text-main); font-weight: 700; }
         .modal-body { padding: 30px; }
-        .modal-close { font-size: 2rem; cursor: pointer; border: none; background: none; color: #999; }
+        .modal-close { font-size: 2rem; cursor: pointer; border: none; background: none; color: #bbb; transition: color 0.2s; }
+        .modal-close:hover { color: var(--theme-port-accent); }
         
         /* Responsive */
         @media (max-width: 768px) {
             .timeline-horizontal { flex-direction: column; }
-            .timeline-horizontal::before { left: 15px; width: 3px; height: 100%; top: 0; }
-            .timeline-col { text-align: left; padding-left: 45px; margin-bottom: 30px; }
-            .timeline-dot { position: absolute; left: 6px; top: 0; margin: 0; }
+            .timeline-horizontal::before { left: 15px; width: 4px; height: 100%; top: 0; }
+            .timeline-col { text-align: left; padding-left: 45px; margin-bottom: 40px; }
+            .timeline-dot { position: absolute; left: 5px; top: 0; margin: 0; }
             .timeline-card::before { left: -10px; top: 15px; transform: rotate(-90deg); border-color: transparent white transparent transparent; }
+            .profile-img { width: 130px; height: 130px; }
+            h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
 <div class="arcs-container">
-    <div class="arc arc-left-1"></div>
-    <div class="arc arc-left-2"></div>
-    <div class="arc arc-right-1"></div>
-    <div class="arc arc-right-2"></div>
+    <div class="arc arc-1"></div>
+    <div class="arc arc-2"></div>
+    <div class="arc arc-3"></div>
+    <div class="arc arc-4"></div>
+    <div class="arc arc-5"></div>
+    <div class="arc arc-6"></div>
+    <div class="arc arc-7"></div>
 </div>
 
 <header>
@@ -323,8 +325,8 @@
     <h1>Oscar JOSEPH-GENESLAY</h1>
     <h2>Data Scientist & Web Analyst</h2>
     <p class="bio">
-        Transformation de données complexes en solutions concrètes.
-        <br>Master Mégadonnées et Analyse Sociale au CFA Cnam.
+        Expert en transformation de données brutes en décisions stratégiques.
+        <br>Actuellement en Master au CFA Cnam.
     </p>
 </header>
 
@@ -337,11 +339,11 @@
 <section id="portfolio" class="section-content active">
     
     <div class="search-wrapper">
-        <input type="text" id="searchBar" class="search-input" placeholder="Rechercher un projet..." onkeyup="filterProjects()">
+        <input type="text" id="searchBar" class="search-input" placeholder="Rechercher un projet (mot clé, langage)..." onkeyup="filterProjects()">
     </div>
 
     <div class="filters">
-        <span class="filter-tag active" onclick="setTagFilter('all', this)">Tout</span>
+        <span class="filter-tag active" onclick="setTagFilter('all', this)">Tout voir</span>
         <span class="filter-tag" onclick="setTagFilter('Python', this)">Python</span>
         <span class="filter-tag" onclick="setTagFilter('R', this)">R</span>
         <span class="filter-tag" onclick="setTagFilter('SQL', this)">SQL</span>
@@ -444,23 +446,24 @@
 <div id="modalOverlay" class="modal-overlay" onclick="closeModal(event)">
     <div class="modal-box">
         <div class="modal-header">
-            <h3 id="mTitle" style="margin:0; color:#333;">Titre</h3>
+            <h3 id="mTitle" class="modal-title">Titre</h3>
             <button class="modal-close" onclick="closeModal(event)">&times;</button>
         </div>
         <div class="modal-body">
-            <div style="text-align:center; background:#f9f9f9; padding:10px; border-radius:8px; margin-bottom:20px;">
-                <img id="mImg" src="" style="max-height:350px; max-width:100%;">
+            <div style="text-align:center; background:#f5f5f5; padding:10px; border-radius:8px; margin-bottom:20px;">
+                <img id="mImg" src="" style="max-height:350px; max-width:100%; border-radius:4px;">
             </div>
+            
             <div id="mTags" style="margin-bottom:20px;"></div>
             
-            <h4 style="color:#5d4037; border-bottom:1px solid #ddd; padding-bottom:5px;">Contexte</h4>
-            <p id="mDesc" style="color:#666;"></p>
+            <h4 style="color:#00796b; border-bottom:1px solid #e0e0e0; padding-bottom:5px; font-weight:700;">Contexte & Objectifs</h4>
+            <p id="mDesc" style="color:#555; text-align:justify;"></p>
 
-            <h4 style="color:#5d4037; border-bottom:1px solid #ddd; padding-bottom:5px; margin-top:20px;">Démarche</h4>
-            <p id="mApproach" style="color:#666;"></p>
+            <h4 style="color:#00796b; border-bottom:1px solid #e0e0e0; padding-bottom:5px; margin-top:25px; font-weight:700;">Démarche Technique</h4>
+            <p id="mApproach" style="color:#555; text-align:justify;"></p>
 
-            <h4 style="color:#5d4037; border-bottom:1px solid #ddd; padding-bottom:5px; margin-top:20px;">Compétences</h4>
-            <p id="mSkills" style="color:#666;"></p>
+            <h4 style="color:#00796b; border-bottom:1px solid #e0e0e0; padding-bottom:5px; margin-top:25px; font-weight:700;">Compétences Clés</h4>
+            <p id="mSkills" style="color:#555;"></p>
         </div>
     </div>
 </div>
@@ -472,9 +475,9 @@
             title: "Enquête Batman & Population de Gotham",
             tags: ["Python", "SQL"],
             img: "images/p1.jpg",
-            summary: "Croisement de données CSV et SQL pour identifier un individu.",
-            description: "Projet divisé en deux parties : retrouver l'identité de Batman et analyser les caractéristiques démographiques.",
-            approach: "Agrégation de données CSV, création d'une base SQLite. Croisement d'indices.",
+            summary: "Croisement de données CSV et SQL pour identifier un individu spécifique.",
+            description: "Projet divisé en deux parties : retrouver l'identité de Batman pour le chef de la police et analyser les caractéristiques démographiques pour le maire.",
+            approach: "Agrégation de données CSV, création d'une base SQLite. Croisement d'indices pour filtrer les individus.",
             skills: "Manipulation de grands jeux de données, Logique SQL/Python.",
             place: "Université de Caen"
         },
@@ -483,7 +486,7 @@
             tags: ["Python"],
             img: "images/p2.jpg",
             summary: "Script Python pour générer des bulletins scolaires.",
-            description: "Création d'un système pour calculer les moyennes élèves/matières à partir de fichiers hétérogènes.",
+            description: "Création d'un système pour calculer les moyennes élèves/matières à partir de fichiers hétérogènes (txt, csv).",
             approach: "Nettoyage de données atypiques, conversion de types, algorithmique.",
             skills: "Nettoyage de données (Data Cleaning), Gestion d'erreurs.",
             place: "Université de Caen"
@@ -493,7 +496,7 @@
             tags: ["R"],
             img: "images/p3.jpg",
             summary: "Visualisation de la mobilité urbaine à New York.",
-            description: "Étude complète des données de location de vélos (juin 2022).",
+            description: "Étude complète des données de location de vélos (juin 2022) pour comprendre les habitudes des usagers.",
             approach: "Utilisation de RStudio pour filtrer, organiser et visualiser les données.",
             skills: "Programmation R, Analyse exploratoire.",
             place: "Université de Caen"
@@ -502,7 +505,7 @@
             title: "Régression : Indice de masse maigre",
             tags: ["R"],
             img: "images/p4.jpg",
-            summary: "Modélisation liant morphologie et masse maigre.",
+            summary: "Modélisation statistique liant morphologie et masse maigre.",
             description: "Étude de la corrélation entre l'indice de masse maigre et des mesures morphologiques.",
             approach: "Nettoyage, Nuages de points, Régression linéaire simple.",
             skills: "Modélisation statistique, Analyse de corrélation.",
@@ -592,27 +595,27 @@
 
     let currentTag = 'all';
 
-    // --- FONCTIONS ---
     function switchTab(tabId, btn, theme) {
+        // Active Tab
         document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
         document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(tabId).classList.add('active');
         btn.classList.add('active');
         
-        // Change la couleur de fond global subtilement
-        if(theme === 'port') document.body.style.backgroundColor = '#fdfbf7'; // Beige très clair
-        if(theme === 'form') document.body.style.backgroundColor = '#f0f8ff'; // Bleu très clair
-        if(theme === 'exp') document.body.style.backgroundColor = '#fff5f5';  // Rouge très clair
+        // Change la couleur de fond global en fonction du thème
+        if(theme === 'port') document.body.style.backgroundColor = '#e0f2f1'; // Teal très clair
+        if(theme === 'form') document.body.style.backgroundColor = '#e3f2fd'; // Bleu très clair
+        if(theme === 'exp') document.body.style.backgroundColor = '#ffebee';  // Rouge très clair
     }
 
     function renderProjects(list) {
         const grid = document.getElementById('grid');
         grid.innerHTML = '';
-        if(list.length === 0) { grid.innerHTML = '<p>Aucun projet.</p>'; return; }
+        if(list.length === 0) { grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;">Aucun projet trouvé.</p>'; return; }
 
         list.forEach(p => {
             const originalIndex = projects.indexOf(p);
-            const tags = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+            const tags = p.tags.map(t => `<span class="tag tag-${t}">${t}</span>`).join('');
             const card = document.createElement('div');
             card.className = 'card';
             card.onclick = () => openModal(originalIndex);
@@ -621,12 +624,12 @@
                     <img src="${p.img}" class="card-img" onerror="this.src='https://via.placeholder.com/400x200?text=${p.title.charAt(0)}'">
                 </div>
                 <div class="card-body">
-                    <div style="margin-bottom:10px;">${tags}</div>
+                    <div class="tags-container">${tags}</div>
                     <h3 class="card-title">${p.title}</h3>
                     <p class="card-summary">${p.summary}</p>
                     <div class="card-footer">
                         <span>${p.place}</span>
-                        <span class="view-btn">Voir →</span>
+                        <span class="view-btn">Détails →</span>
                     </div>
                 </div>
             `;
@@ -638,7 +641,7 @@
         const query = document.getElementById('searchBar').value.toLowerCase();
         const res = projects.filter(p => {
             const tagMatch = currentTag === 'all' || p.tags.includes(currentTag);
-            const textMatch = p.title.toLowerCase().includes(query) || p.description.toLowerCase().includes(query);
+            const textMatch = p.title.toLowerCase().includes(query) || p.description.toLowerCase().includes(query) || p.tags.join(' ').toLowerCase().includes(query);
             return tagMatch && textMatch;
         });
         renderProjects(res);
@@ -651,14 +654,13 @@
         filterProjects();
     }
 
-    // Modal
     const modal = document.getElementById('modalOverlay');
     function openModal(idx) {
         const p = projects[idx];
         document.getElementById('mTitle').innerText = p.title;
         let img = document.getElementById('mImg');
         img.src = p.img; img.onerror = function() { this.src=`https://via.placeholder.com/600x300?text=${p.title}`; };
-        document.getElementById('mTags').innerHTML = p.tags.map(t=>`<span class="tag" style="background:#5d4037; color:white;">${t}</span>`).join('');
+        document.getElementById('mTags').innerHTML = p.tags.map(t=>`<span class="tag tag-${t}">${t}</span>`).join('');
         document.getElementById('mDesc').innerText = p.description;
         document.getElementById('mApproach').innerText = p.approach;
         document.getElementById('mSkills').innerText = p.skills;
