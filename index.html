@@ -3,32 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oscar JOSEPH-GENESLAY - Portfolio</title>
+    <title>Oscar JOSEPH-GENESLAY - Portfolio Data</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary: #c1002a; /* Rouge Cnam */
+            --primary-dark: #8a001e;
             --dark: #2c3e50;
-            --light: #f4f4f4;
+            --light-bg: #f8f9fa;
             --white: #ffffff;
-            --text: #333;
+            --text-main: #333;
+            --text-light: #666;
+            --shadow: 0 4px 6px rgba(0,0,0,0.05);
+            --shadow-hover: 0 10px 20px rgba(0,0,0,0.1);
         }
 
+        * { box-sizing: border-box; }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light);
-            color: var(--text);
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
             line-height: 1.6;
         }
 
-        /* --- HEADER & PROFIL --- */
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+
+        /* --- HEADER --- */
         header {
             background: var(--white);
-            padding: 40px 20px;
+            padding: 50px 20px;
             text-align: center;
-            border-bottom: 4px solid var(--primary);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-bottom: 3px solid var(--primary);
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 10;
+        }
+
+        .profile-container {
+            display: inline-block;
+            position: relative;
         }
 
         .profile-img {
@@ -36,62 +53,105 @@
             height: 160px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--primary);
-            margin-bottom: 15px;
+            border: 4px solid var(--white);
+            box-shadow: 0 0 0 3px var(--primary);
+            margin-bottom: 20px;
+            transition: transform 0.3s;
         }
 
-        h1 { margin: 0; color: var(--dark); font-size: 2.5rem; }
-        h2 { margin: 10px 0 20px; color: var(--primary); font-weight: 500; font-size: 1.2rem; }
-        .bio { max-width: 700px; margin: 0 auto; color: #666; font-style: italic; }
+        .profile-img:hover { transform: scale(1.05); }
 
-        /* --- NAVIGATION (ONGLETS) --- */
+        h1 { margin: 0; color: var(--dark); font-size: 2.2rem; font-weight: 700; letter-spacing: -0.5px; }
+        h2 { margin: 10px 0 20px; color: var(--primary); font-weight: 500; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .bio { max-width: 700px; margin: 0 auto; color: var(--text-light); font-size: 1rem; }
+
+        /* --- NAVIGATION --- */
         nav {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin: 30px 0;
+            gap: 15px;
+            margin: 40px 0;
+            padding: 0 20px;
             flex-wrap: wrap;
         }
 
         .nav-btn {
-            padding: 12px 25px;
+            padding: 12px 30px;
             background: var(--white);
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            font-size: 1.1rem;
-            font-weight: bold;
+            border: none;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            font-weight: 600;
             cursor: pointer;
-            border-radius: 30px;
+            border-radius: 50px;
             transition: all 0.3s;
-            text-transform: uppercase;
+            box-shadow: var(--shadow);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .nav-btn:hover, .nav-btn.active {
             background: var(--primary);
             color: var(--white);
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(193, 0, 42, 0.3);
+            box-shadow: 0 5px 15px rgba(193, 0, 42, 0.3);
         }
 
         /* --- SECTIONS --- */
         .section-content {
-            display: none; /* Caché par défaut */
+            display: none;
             max-width: 1200px;
-            margin: 0 auto 50px;
+            margin: 0 auto 80px;
             padding: 0 20px;
             animation: fadeIn 0.5s ease;
         }
-
-        .section-content.active {
-            display: block; /* Affiché si actif */
-        }
+        .section-content.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- GRILLE PROJETS (STYLE CNAM) --- */
+        /* --- BARRE DE RECHERCHE --- */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            outline: none;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(193, 0, 42, 0.1);
+        }
+
+        /* --- FILTRES TAGS --- */
+        .filters { text-align: center; margin-bottom: 40px; }
+        .filter-tag {
+            display: inline-block;
+            margin: 5px;
+            padding: 6px 15px;
+            border-radius: 20px;
+            background: #e9ecef;
+            color: #555;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .filter-tag:hover, .filter-tag.active { background: var(--dark); color: white; }
+
+        /* --- GRILLE PROJETS --- */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -100,82 +160,83 @@
 
         .card {
             background: var(--white);
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
             cursor: pointer;
             display: flex;
             flex-direction: column;
-            border: 1px solid #eee;
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
+            top: 0;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-            border-color: var(--primary);
+            top: -5px;
+            box-shadow: var(--shadow-hover);
         }
 
-        .card-img-container {
+        .card-img-wrapper {
             height: 200px;
-            background-color: #ddd;
-            position: relative;
             overflow: hidden;
+            background: #eee;
+            position: relative;
         }
 
         .card-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
+            transition: transform 0.6s ease;
         }
 
-        .card:hover .card-img { transform: scale(1.05); }
+        .card:hover .card-img { transform: scale(1.08); }
 
         .card-body {
-            padding: 20px;
-            flex-grow: 1;
+            padding: 25px;
             display: flex;
             flex-direction: column;
+            flex-grow: 1;
         }
 
-        .card-tags {
-            margin-bottom: 10px;
-        }
-
+        .card-tags { margin-bottom: 12px; }
+        
         .tag {
             display: inline-block;
-            background: #eee;
-            color: #555;
-            padding: 4px 8px;
+            padding: 3px 8px;
             border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            margin-right: 5px;
+            font-size: 0.7rem;
+            font-weight: 700;
             text-transform: uppercase;
+            margin-right: 5px;
+            margin-bottom: 5px;
         }
-
-        .tag-R { background: #e6f0ff; color: #0066cc; }
-        .tag-Python { background: #fffbe6; color: #b38600; }
-        .tag-SQL { background: #ffe6e6; color: #cc0000; }
-        .tag-PowerBI { background: #fff0b3; color: #997a00; }
+        /* Couleurs dynamiques des tags */
+        .tag-Python { background: #e3f2fd; color: #1565c0; }
+        .tag-R { background: #e8f5e9; color: #2e7d32; }
+        .tag-SQL { background: #fff3e0; color: #ef6c00; }
+        .tag-SAS { background: #f3e5f5; color: #7b1fa2; }
+        .tag-PowerBI { background: #fff8e1; color: #fbc02d; }
+        .tag-NoSQL { background: #e0f2f1; color: #00695c; }
 
         .card-title {
             margin: 0 0 10px;
-            font-size: 1.25rem;
+            font-size: 1.15rem;
+            font-weight: 700;
             color: var(--dark);
         }
 
-        .card-text {
-            color: #666;
-            font-size: 0.95rem;
+        .card-summary {
+            color: var(--text-light);
+            font-size: 0.9rem;
             flex-grow: 1;
+            margin-bottom: 20px;
         }
 
         .card-footer {
-            margin-top: 15px;
+            border-top: 1px solid #f0f0f0;
             padding-top: 15px;
-            border-top: 1px solid #eee;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -183,361 +244,586 @@
             color: #999;
         }
 
-        .btn-more {
+        .view-project {
             color: var(--primary);
-            font-weight: bold;
-            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        /* --- FILTRES --- */
-        .filters {
-            text-align: center;
-            margin-bottom: 30px;
+        /* --- CHRONOLOGIE (TIMELINE) --- */
+        .timeline-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
         }
-        .filter-link {
-            display: inline-block;
-            margin: 0 10px;
-            cursor: pointer;
-            color: #888;
-            font-weight: 500;
-        }
-        .filter-link.active { color: var(--primary); text-decoration: underline; }
 
-        /* --- TIMELINE (Formation/Expérience) --- */
-        .timeline-item {
+        /* La ligne verticale */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 20px; /* Position de la ligne */
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #e9ecef;
+            border-radius: 2px;
+        }
+
+        .timeline-block {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 60px; /* Espace pour la ligne et le point */
+        }
+
+        /* Le point sur la ligne */
+        .timeline-dot {
+            position: absolute;
+            left: 11px; /* Centré sur la ligne (20px + 1.5px - 10px) */
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--white);
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            z-index: 2;
+            transition: background 0.3s;
+        }
+
+        .timeline-block:hover .timeline-dot {
+            background: var(--primary);
+            box-shadow: 0 0 0 4px rgba(193, 0, 42, 0.2);
+        }
+
+        .timeline-content {
             background: var(--white);
             padding: 25px;
             border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--primary);
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: transform 0.3s;
         }
 
-        .timeline-date { color: var(--primary); font-weight: bold; margin-bottom: 5px; }
-        .timeline-title { font-size: 1.2rem; margin: 0 0 5px; color: var(--dark); }
-        .timeline-place { color: #777; font-style: italic; margin-bottom: 10px; }
-        .timeline-desc ul { margin: 0; padding-left: 20px; color: #555; }
+        .timeline-block:hover .timeline-content {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-hover);
+        }
 
-        /* --- MODALE (Popup projet) --- */
-        .modal {
-            display: none;
+        /* Petite flèche à gauche de la boite */
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 10px;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent var(--white) transparent transparent;
+            border-style: solid;
+        }
+
+        .t-date {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .t-title { margin: 0 0 5px; font-size: 1.2rem; color: var(--dark); }
+        .t-place { color: #888; font-style: italic; font-size: 0.9rem; margin-bottom: 15px; display: block; }
+        .t-desc ul { margin: 0; padding-left: 20px; color: var(--text-light); }
+        .t-desc li { margin-bottom: 5px; }
+
+        /* --- MODALE --- */
+        .modal-overlay {
             position: fixed;
-            z-index: 1000;
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            align-items: center;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            display: none;
             justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
-        .modal.open { display: flex; }
-        .modal-content {
+
+        .modal-overlay.open { display: flex; opacity: 1; }
+
+        .modal-box {
             background: var(--white);
-            padding: 30px;
-            border-radius: 10px;
-            max-width: 800px;
             width: 90%;
+            max-width: 900px;
             max-height: 90vh;
+            border-radius: 12px;
             overflow-y: auto;
             position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
         }
-        .close-btn {
-            position: absolute;
-            top: 15px; right: 20px;
-            font-size: 30px;
-            cursor: pointer;
-            color: #999;
+
+        .modal-header {
+            padding: 20px 30px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 5;
         }
-        .modal-img { width: 100%; max-height: 400px; object-fit: contain; background: #f9f9f9; margin-bottom: 20px; }
+
+        .modal-title { margin: 0; color: var(--primary); font-size: 1.4rem; }
+        .modal-close { font-size: 2rem; color: #aaa; cursor: pointer; background: none; border: none; }
+        .modal-close:hover { color: var(--primary); }
+
+        .modal-body { padding: 30px; }
+        
+        .modal-img-container {
+            width: 100%;
+            height: 300px;
+            background: #f4f4f4;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .modal-img { width: 100%; height: 100%; object-fit: contain; }
+
+        .modal-section { margin-bottom: 25px; }
+        .modal-section h4 { 
+            color: var(--dark); 
+            border-left: 4px solid var(--primary); 
+            padding-left: 10px; 
+            margin-bottom: 10px; 
+            font-size: 1.1rem;
+        }
+        .modal-text { color: #555; text-align: justify; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline-container::before { left: 10px; }
+            .timeline-block { padding-left: 35px; }
+            .timeline-dot { left: 1px; }
+            .nav-btn { width: 100%; margin-bottom: 5px; }
+            header { padding: 30px 15px; }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="images/profile.jpg" alt="Oscar JG" class="profile-img" onerror="this.src='https://via.placeholder.com/150?text=O'">
+    <div class="profile-container">
+        <img src="images/profile.jpg" alt="Oscar JG" class="profile-img" onerror="this.src='https://via.placeholder.com/160?text=Oscar'">
+    </div>
     <h1>Oscar JOSEPH-GENESLAY</h1>
     <h2>Data Scientist & Web Analyst</h2>
     <p class="bio">
-        Actuellement en Master Mégadonnées et Analyse Sociale au CFA Cnam.<br>
-        Passionné par la Data Science, de la collecte à la visualisation.
+        Expert en transformation de données brutes en décisions stratégiques.
+        <br>Master Mégadonnées et Analyse Sociale au CFA Cnam.
     </p>
 </header>
 
 <nav>
-    <button class="nav-btn active" onclick="showSection('portfolio')">Mon Portfolio</button>
-    <button class="nav-btn" onclick="showSection('formation')">Formation</button>
-    <button class="nav-btn" onclick="showSection('experience')">Expérience Pro</button>
+    <button class="nav-btn active" onclick="switchTab('portfolio', this)">Mon Portfolio</button>
+    <button class="nav-btn" onclick="switchTab('formation', this)">Formation</button>
+    <button class="nav-btn" onclick="switchTab('experience', this)">Expérience Pro</button>
 </nav>
 
-<div id="portfolio" class="section-content active">
+<section id="portfolio" class="section-content active">
     
+    <div class="search-container">
+        <input type="text" id="searchBar" class="search-input" placeholder="Rechercher un projet (ex: Python, Régression, Olist...)" onkeyup="filterProjects()">
+    </div>
+
     <div class="filters">
-        <span class="filter-link active" onclick="filterProjects('all', this)">Tous</span>
-        <span class="filter-link" onclick="filterProjects('Python', this)">Python</span>
-        <span class="filter-link" onclick="filterProjects('R', this)">R</span>
-        <span class="filter-link" onclick="filterProjects('SQL', this)">SQL</span>
-        <span class="filter-link" onclick="filterProjects('PowerBI', this)">PowerBI</span>
+        <span class="filter-tag active" onclick="setTagFilter('all', this)">Tout voir</span>
+        <span class="filter-tag" onclick="setTagFilter('Python', this)">Python</span>
+        <span class="filter-tag" onclick="setTagFilter('R', this)">R</span>
+        <span class="filter-tag" onclick="setTagFilter('SQL', this)">SQL</span>
+        <span class="filter-tag" onclick="setTagFilter('PowerBI', this)">PowerBI</span>
+        <span class="filter-tag" onclick="setTagFilter('SAS', this)">SAS</span>
     </div>
 
     <div class="projects-grid" id="grid">
         </div>
-</div>
+</section>
 
-<div id="formation" class="section-content">
-    <div class="timeline-item">
-        <div class="timeline-date">Actuellement</div>
-        <h3 class="timeline-title">Master Mégadonnées et Analyse Sociale</h3>
-        <div class="timeline-place">CFA Cnam, Saint-Denis</div>
-    </div>
-    <div class="timeline-item">
-        <div class="timeline-date">2022 - 2025</div>
-        <h3 class="timeline-title">BUT Science des Données</h3>
-        <div class="timeline-place">IUT Grand Ouest Normandie, Lisieux (Université de Caen Normandie)</div>
-    </div>
-    <div class="timeline-item">
-        <div class="timeline-date">2022</div>
-        <h3 class="timeline-title">BAC Spécialités NSI et Maths</h3>
-    </div>
-</div>
-
-<div id="experience" class="section-content">
-    <div class="timeline-item">
-        <div class="timeline-date">Sept. 2025 - Aujourd'hui (4 mois)</div>
-        <h3 class="timeline-title">Web Analyst (Alternance)</h3>
-        <div class="timeline-place">Wonderbox · Sur site</div>
-        <div class="timeline-desc">
-            Analyse de l'activité du site e-commerce de Wonderbox.
-            <ul>
-                <li>Outils : Google Analytics, Tag Manager, Didomi, AB Tasty.</li>
-            </ul>
+<section id="formation" class="section-content">
+    <div class="timeline-container">
+        
+        <div class="timeline-block">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <span class="t-date">Actuellement</span>
+                <h3 class="t-title">Master Mégadonnées et Analyse Sociale</h3>
+                <span class="t-place">CFA Cnam, Saint-Denis</span>
+                <div class="t-desc">
+                    Spécialisation en Big Data, Machine Learning avancé et analyse de données sociologiques.
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="timeline-item">
-        <div class="timeline-date">Sept. 2024 - Août 2025 (1 an)</div>
-        <h3 class="timeline-title">Assistant chargé d'études statistiques (Alternance)</h3>
-        <div class="timeline-place">Observatoire UNICAEN · Caen</div>
-        <div class="timeline-desc">
-            <ul>
-                <li>Automatisation de traitement / nettoyage de données (sous R).</li>
-                <li>Mise en œuvre d'enquêtes (télé-enquête, questionnaires).</li>
-                <li>Création de tableaux de bord sous SphinxIQ3.</li>
-            </ul>
+        <div class="timeline-block">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <span class="t-date">2022 - 2025</span>
+                <h3 class="t-title">BUT Science des Données</h3>
+                <span class="t-place">IUT Grand Ouest Normandie, Lisieux (Unicaen)</span>
+                <div class="t-desc">
+                    Cursus complet sur la statistique décisionnelle, la programmation et les bases de données.
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="timeline-item">
-        <div class="timeline-date">Avril 2024 - Juin 2024 (3 mois)</div>
-        <h3 class="timeline-title">Consultant BI (Stage)</h3>
-        <div class="timeline-place">KPMG Nord Normandie · Hérouville-Saint-Clair</div>
-        <div class="timeline-desc">
-            <ul>
-                <li>Création de dashboard et visualisations graphiques (PowerBI).</li>
-                <li>Analyses financières et extra-financières.</li>
-            </ul>
+        <div class="timeline-block">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <span class="t-date">2022</span>
+                <h3 class="t-title">Baccalauréat Général</h3>
+                <span class="t-place">Lycée Général</span>
+                <div class="t-desc">
+                    Spécialités Numérique et Sciences Informatiques (NSI) et Mathématiques. Mention Bien.
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<div id="modal" class="modal" onclick="closeModal(event)">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeModal(event)">&times;</span>
-        <h2 id="m-title" style="color:var(--primary);"></h2>
-        <img id="m-img" class="modal-img" src="">
-        <div id="m-tags" style="margin-bottom:15px;"></div>
-        <p id="m-desc"></p>
-        <hr>
-        <h4 style="color:var(--dark);">Démarche technique</h4>
-        <p id="m-approach"></p>
-        <h4 style="color:var(--dark);">Compétences acquises</h4>
-        <p id="m-skills"></p>
+    </div>
+</section>
+
+<section id="experience" class="section-content">
+    <div class="timeline-container">
+
+        <div class="timeline-block">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <span class="t-date">Sept. 2025 - Aujourd'hui</span>
+                <h3 class="t-title">Web Analyst (Alternance)</h3>
+                <span class="t-place">Wonderbox · Sur site</span>
+                <div class="t-desc">
+                    <ul>
+                        <li>Analyse fine de l'activité e-commerce via <strong>Google Analytics 4</strong>.</li>
+                        <li>Gestion des plans de taggage avec <strong>GTM (Google Tag Manager)</strong>.</li>
+                        <li>A/B Testing et personnalisation avec <strong>AB Tasty</strong>.</li>
+                        <li>Gestion de la conformité RGPD via <strong>Didomi</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-block">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <span class="t-date">Sept. 2024 - Août 2025</span>
+                <h3 class="t-title">Assistant chargé d'études statistiques</h3>
+                <span class="t-place">Observatoire UNICAEN · Caen</span>
+                <div class="t-desc">
+                    <ul>
+                        <li>Développement de scripts <strong>R</strong> pour l'automatisation du nettoyage de données.</li>
+                        <li>Conception et déploiement d'enquêtes (questionnaires, télé-enquêtes).</li>
+                        <li>Création de tableaux de bord dynamiques sous <strong>SphinxIQ3</strong>.</li>
+                        <li>Rédaction de documentations techniques pour les processus automatisés.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-block">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <span class="t-date">Avril 2024 - Juin 2024</span>
+                <h3 class="t-title">Consultant BI (Stage)</h3>
+                <span class="t-place">KPMG Nord Normandie · Hérouville-Saint-Clair</span>
+                <div class="t-desc">
+                    <ul>
+                        <li>Conception de dashboards financiers interactifs sur <strong>Microsoft PowerBI</strong>.</li>
+                        <li>Analyse d'indicateurs financiers et extra-financiers (RSE).</li>
+                        <li>Optimisation de la visualisation de données pour l'aide à la décision.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<div id="modalOverlay" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3 id="mTitle" class="modal-title">Titre du Projet</h3>
+            <button class="modal-close" onclick="closeModal(event)">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-img-container">
+                <img id="mImg" src="" class="modal-img">
+            </div>
+            
+            <div id="mTags" style="margin-bottom:20px;"></div>
+
+            <div class="modal-section">
+                <h4>Contexte & Objectifs</h4>
+                <p id="mDesc" class="modal-text"></p>
+            </div>
+
+            <div class="modal-section">
+                <h4>Démarche Technique</h4>
+                <p id="mApproach" class="modal-text"></p>
+            </div>
+
+            <div class="modal-section">
+                <h4>Compétences Clés</h4>
+                <p id="mSkills" class="modal-text"></p>
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
-    // DONNÉES DES PROJETS (12 Projets)
+    // === DONNÉES JSON (Source PDF) ===
     const projects = [
         {
             title: "Enquête Batman & Population de Gotham",
             tags: ["Python", "SQL"],
             img: "images/p1.jpg",
-            desc: "Croisement de données CSV et SQL pour identifier un individu spécifique et cartographier la population.",
-            approach: "Agrégation de données CSV, création d'une base SQLite. Croisement d'indices pour filtrer les individus.",
-            skills: "Manipulation de grands jeux de données, Logique SQL/Python.",
+            summary: "Analyse de données croisées CSV/SQL pour identifier un individu et cartographier la population.",
+            description: "Projet divisé en deux parties : retrouver l'identité de Batman pour le chef de la police et analyser les caractéristiques démographiques pour le maire. Utilisation de Python et SQL pour agréger et filtrer de grands volumes de données.",
+            approach: "Agrégation de données CSV, création d'une base SQLite. Croisement d'indices pour filtrer les individus. Création de graphiques de répartition générationnelle.",
+            skills: "Manipulation de grands jeux de données, Logique SQL/Python, Travail d'équipe.",
             place: "Université de Caen"
         },
         {
             title: "Automatisation de bulletins scolaires",
             tags: ["Python"],
             img: "images/p2.jpg",
-            desc: "Traitement de fichiers bruts (TXT/CSV) pour générer les moyennes et bulletins d'une classe.",
-            approach: "Nettoyage de données atypiques (listes de courses insérées dans les fichiers), conversion de types.",
-            skills: "Nettoyage de données (Data Cleaning), Algorithmique.",
+            summary: "Script Python pour générer des bulletins à partir de fichiers bruts hétérogènes.",
+            description: "Création d'un système pour calculer les moyennes élèves/matières à partir de fichiers hétérogènes (txt, csv) suite à une panne informatique fictive.",
+            approach: "Nettoyage de données atypiques (listes de courses insérées dans les fichiers), conversion de types, utilisation de map() et fonctions string pour structurer les données.",
+            skills: "Nettoyage de données (Data Cleaning), Gestion des erreurs, Algorithmique.",
             place: "Université de Caen"
         },
         {
             title: "Analyse des locations Citibike NYC",
             tags: ["R"],
             img: "images/p3.jpg",
-            desc: "Analyse exploratoire et visualisation temporelle des données de vélos à New York.",
-            approach: "Utilisation de RStudio pour filtrer, organiser et visualiser les données (répartition types de vélos).",
-            skills: "Programmation R, Analyse exploratoire.",
+            summary: "Visualisation de données temporelles sur la mobilité urbaine à New York.",
+            description: "Étude complète des données de location de vélos (juin 2022) pour comprendre les habitudes des usagers new-yorkais.",
+            approach: "Utilisation de RStudio pour filtrer, organiser et visualiser les données (répartition types de vélos, horaires).",
+            skills: "Programmation R, Analyse exploratoire, Rigueur statistique.",
             place: "Université de Caen"
         },
         {
             title: "Régression : Indice de masse maigre",
             tags: ["R"],
             img: "images/p4.jpg",
-            desc: "Modélisation statistique pour expliquer la masse maigre via des variables morphologiques.",
-            approach: "Nettoyage, Nuages de points, Régression linéaire simple.",
-            skills: "Modélisation statistique, Analyse de corrélation.",
+            summary: "Modélisation statistique liant morphologie et masse maigre.",
+            description: "Étude de la corrélation entre l'indice de masse maigre et des mesures comme le tour de cou ou de hanches.",
+            approach: "Nettoyage (écart interquartile), Nuages de points, Calcul du coefficient de détermination, Régression linéaire simple (droite des moindres carrés).",
+            skills: "Modélisation statistique, Analyse de corrélation, R.",
             place: "Université de Caen"
         },
         {
             title: "Datawarehouse Météo & Pollution",
             tags: ["Python", "SQL"],
             img: "images/p5.jpg",
-            desc: "ETL complet : Import, nettoyage et stockage MySQL pour analyser l'air de Sheffield.",
-            approach: "Scripts Python (Pandas) pour nettoyer les CSV. Insertion automatique dans MySQL.",
-            skills: "Architecture de données (ETL), SQL, Python.",
+            summary: "Pipeline ETL complet : Import, nettoyage et stockage MySQL pour analyser l'air.",
+            description: "Construction d'un entrepôt de données intégrant des relevés météorologiques et de pollution de l'air de Sheffield.",
+            approach: "Scripts Python (Pandas/Numpy) pour nettoyer les CSV. Insertion automatique dans MySQL. Analyse de l'influence du vent sur le NO2 via Matplotlib.",
+            skills: "Architecture de données (ETL), SQL, Python (Pandas/Matplotlib).",
             place: "Université de Caen"
         },
         {
             title: "Séries Temporelles : Hôtellerie",
             tags: ["R"],
             img: "images/p6.jpg",
-            desc: "Désaisonnalisation et prévision des nuitées hôtelières en Normandie.",
-            approach: "Régression linéaire par morceaux, coefficients saisonniers, prévision à N+1.",
-            skills: "Analyse de séries chronologiques, Prévision statistique.",
+            summary: "Prévision des nuitées hôtelières en Normandie (Saisonnalité & Tendance).",
+            description: "Analyse des données INSEE (2011-2023) pour comprendre la dynamique touristique normande.",
+            approach: "Régression linéaire par morceaux, estimation des coefficients saisonniers, analyse des résidus et prévision à N+1.",
+            skills: "Analyse de séries chronologiques, Prévision statistique, R.",
             place: "Université de Caen"
         },
         {
             title: "Prédiction Poids des Manchots",
             tags: ["R"],
             img: "images/p7.jpg",
-            desc: "Modèles de régression multiple et ANOVA pour prédire une variable quantitative.",
-            approach: "Comparaison de modèles : ANOVA, ANCOVA et Régression multiple.",
-            skills: "Statistiques inférentielles, Sélection de modèles.",
+            summary: "Comparaison de modèles de régression multiple pour prédire une variable biologique.",
+            description: "Estimation du poids des manchots (Palmer Archipelago) selon leurs caractéristiques physiques.",
+            approach: "Comparaison de modèles : Régression simple, ANOVA, ANCOVA et Régression multiple (sélection ascendante/descendante).",
+            skills: "Statistiques inférentielles, Sélection de modèles, R.",
             place: "Université de Caen"
         },
         {
             title: "Storytelling Dow Jones",
             tags: ["PowerBI"],
             img: "images/p8.jpg",
-            desc: "Tableau de bord interactif racontant l'histoire des crises boursières.",
-            approach: "Utilisation des signets (bookmarks) PowerBI pour figer des instants clés.",
-            skills: "Data Visualization, Storytelling.",
+            summary: "Narration visuelle et interactive des crises boursières historiques.",
+            description: "Création d'une narration visuelle autour de l'évolution de l'indice Dow Jones.",
+            approach: "Utilisation des signets (bookmarks) PowerBI pour figer des instants clés, filtres dynamiques et navigation guidée.",
+            skills: "Data Visualization, Storytelling, Business Intelligence.",
             place: "Université de Caen"
         },
         {
             title: "Épidémiologie : Cancer du Poumon",
             tags: ["SAS", "R"],
             img: "images/p9.jpg",
-            desc: "Étude des facteurs de risques (cohorte AGRICAN) via modèle de Cox.",
-            approach: "Traitement SAS, Tests Chi-2/Student sous R, Modèle de Cox.",
-            skills: "Biostatistiques, Modèle de Cox, SAS.",
+            summary: "Analyse de survie (Modèle de Cox) sur la cohorte AGRICAN.",
+            description: "Analyse statistique de données de santé (Centre François Baclesse) pour lier pratiques agricoles et cancer.",
+            approach: "Traitement SAS (durée d'élevage), Tests Chi-2/Student sous R, Modèle de Cox (Hazard Ratios) pour évaluer les risques.",
+            skills: "Biostatistiques, Modèle de Cox, SAS, R.",
             place: "Université de Caen"
         },
         {
             title: "NoSQL : Migration Olist",
             tags: ["Python", "NoSQL"],
             img: "images/p10.jpg",
-            desc: "Migration de données e-commerce vers MongoDB et optimisation des requêtes.",
-            approach: "Script Python pour l'insertion. Création d'index pour optimiser les temps.",
-            skills: "Bases de données NoSQL (MongoDB), Optimisation.",
+            summary: "Migration e-commerce vers MongoDB et optimisation par indexation.",
+            description: "Analyse de l'activité commerciale d'Olist (Brésil) en passant d'un format CSV à une base orientée documents.",
+            approach: "Script Python (pymongo) pour l'insertion. Création d'index pour optimiser les temps de jointure (aggregation framework).",
+            skills: "Bases de données NoSQL (MongoDB), Optimisation, Python.",
             place: "Université de Caen"
         },
         {
             title: "NLP & Datamining : Avis Clients",
             tags: ["Python"],
             img: "images/p11.jpg",
-            desc: "Analyse de sentiments et classification des avis Olist (Deep Learning/Clustering).",
-            approach: "NLP (Stop words, Lemmatisation). Clustering SVD. Modèle de Deep Learning.",
-            skills: "Machine Learning, Deep Learning, NLP.",
+            summary: "Analyse de sentiments (Deep Learning) sur commentaires clients.",
+            description: "Traitement du langage naturel sur les commentaires clients pour prédire leur satisfaction.",
+            approach: "NLP (Stop words, Lemmatisation, TF-IDF). Clustering SVD. Modèle de Deep Learning pour la classification (Courbes ROC).",
+            skills: "Machine Learning, Deep Learning, NLP, Python.",
             place: "Université de Caen"
         },
         {
             title: "Big Data Agricole : Modélisation",
             tags: ["R"],
             img: "images/p12.jpg",
-            desc: "Comparaison de modèles prédictifs complexes sur données massives (AGRICAN).",
-            approach: "ACP, Bootstrap. Comparaison : Forêts Aléatoires, Boosting, Réseaux de neurones.",
-            skills: "Big Data, Machine Learning avancé.",
+            summary: "Comparaison de modèles ML avancés sur données massives.",
+            description: "Prédiction de l'état de santé à partir de ratios d'activités agricoles sur un gros volume de données.",
+            approach: "ACP pour réduction de dimension. Bootstrap pour sélection de variables. Comparaison : Forêts Aléatoires, Boosting, Réseaux de neurones.",
+            skills: "Big Data, Machine Learning avancé, R.",
             place: "Université de Caen"
         }
     ];
 
-    // FONCTION D'AFFICHAGE DES PROJETS
-    function renderProjects(filter) {
+    let currentTag = 'all';
+
+    // === GESTION DES ONGLETS ===
+    function switchTab(tabId, btn) {
+        // Cacher toutes les sections
+        document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
+        // Désactiver tous les boutons nav
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+
+        // Activer la section demandée
+        document.getElementById(tabId).classList.add('active');
+        // Activer le bouton
+        btn.classList.add('active');
+    }
+
+    // === LOGIQUE DE FILTRE (TAGS + RECHERCHE) ===
+    function renderProjects(filteredProjects) {
         const grid = document.getElementById('grid');
         grid.innerHTML = '';
 
-        projects.forEach((p, index) => {
-            if (filter === 'all' || p.tags.includes(filter)) {
-                // Création HTML de la carte
-                let tagsHtml = p.tags.map(t => `<span class="tag tag-${t}">${t}</span>`).join('');
-                
-                let card = document.createElement('div');
-                card.className = 'card';
-                card.onclick = () => openModal(index);
-                card.innerHTML = `
-                    <div class="card-img-container">
-                        <img src="${p.img}" class="card-img" onerror="this.src='https://via.placeholder.com/400x250/c1002a/ffffff?text=${p.title.substring(0,10)}...'">
+        if (filteredProjects.length === 0) {
+            grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#666;">Aucun projet ne correspond à votre recherche.</p>';
+            return;
+        }
+
+        filteredProjects.forEach((p, index) => {
+            // Trouver l'index original pour la modale
+            const originalIndex = projects.indexOf(p);
+            
+            const tagsHtml = p.tags.map(t => `<span class="tag tag-${t}">${t}</span>`).join('');
+            
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.onclick = () => openModal(originalIndex);
+            
+            card.innerHTML = `
+                <div class="card-img-wrapper">
+                    <img src="${p.img}" class="card-img" onerror="this.src='https://via.placeholder.com/400x250/eee/999?text=${p.title.charAt(0)}'">
+                </div>
+                <div class="card-body">
+                    <div class="card-tags">${tagsHtml}</div>
+                    <h3 class="card-title">${p.title}</h3>
+                    <p class="card-summary">${p.summary}</p>
+                    <div class="card-footer">
+                        <span>${p.place}</span>
+                        <span class="view-project">Voir <span style="font-size:1.2em">→</span></span>
                     </div>
-                    <div class="card-body">
-                        <div class="card-tags">${tagsHtml}</div>
-                        <h3 class="card-title">${p.title}</h3>
-                        <p class="card-text">${p.desc}</p>
-                        <div class="card-footer">
-                            <span>${p.place}</span>
-                            <span class="btn-more">Voir le projet &rarr;</span>
-                        </div>
-                    </div>
-                `;
-                grid.appendChild(card);
-            }
+                </div>
+            `;
+            grid.appendChild(card);
         });
     }
 
-    // GESTION DES ONGLETS PRINCIPAUX
-    function showSection(id) {
-        document.querySelectorAll('.section-content').forEach(el => el.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
+    function filterProjects() {
+        const query = document.getElementById('searchBar').value.toLowerCase();
         
-        document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
-        event.target.classList.add('active');
+        const filtered = projects.filter(p => {
+            // Filtre par Tag
+            const matchTag = (currentTag === 'all') || p.tags.includes(currentTag);
+            
+            // Filtre par Texte (Titre, Desc, Tags)
+            const matchSearch = p.title.toLowerCase().includes(query) || 
+                                p.description.toLowerCase().includes(query) ||
+                                p.tags.join(' ').toLowerCase().includes(query);
+
+            return matchTag && matchSearch;
+        });
+
+        renderProjects(filtered);
     }
 
-    // GESTION DES FILTRES PROJETS
-    function filterProjects(tag, element) {
-        document.querySelectorAll('.filter-link').forEach(el => el.classList.remove('active'));
-        element.classList.add('active');
-        renderProjects(tag);
+    function setTagFilter(tag, btnElement) {
+        currentTag = tag;
+        
+        // Update visuel des boutons filtres
+        document.querySelectorAll('.filter-tag').forEach(el => el.classList.remove('active'));
+        btnElement.classList.add('active');
+
+        filterProjects(); // Relance le filtrage global
     }
 
-    // GESTION DE LA MODALE
+    // === GESTION DE LA MODALE ===
+    const modal = document.getElementById('modalOverlay');
+
     function openModal(index) {
         const p = projects[index];
-        document.getElementById('m-title').innerText = p.title;
-        let img = document.getElementById('m-img');
+        
+        document.getElementById('mTitle').innerText = p.title;
+        const img = document.getElementById('mImg');
         img.src = p.img;
-        img.onerror = function() { this.src = `https://via.placeholder.com/800x400/c1002a/ffffff?text=${p.title}`; };
+        img.onerror = function() { this.src = `https://via.placeholder.com/800x400/eee/999?text=${p.title}`; };
+
+        document.getElementById('mTags').innerHTML = p.tags.map(t => `<span class="tag tag-${t}" style="font-size:0.9rem; padding:5px 10px;">${t}</span>`).join('');
         
-        document.getElementById('m-tags').innerHTML = p.tags.map(t => `<span class="tag tag-${t}">${t}</span>`).join('');
-        document.getElementById('m-desc').innerText = p.desc;
-        document.getElementById('m-approach').innerText = p.approach;
-        document.getElementById('m-skills').innerText = p.skills;
-        
-        document.getElementById('modal').classList.add('open');
+        // Remplissage des 3 sections de texte
+        document.getElementById('mDesc').innerText = p.description;
+        document.getElementById('mApproach').innerText = p.approach;
+        document.getElementById('mSkills').innerText = p.skills;
+
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden'; // Bloque le scroll
     }
 
     function closeModal(e) {
-        if (e.target.className === 'modal open' || e.target.className === 'close-btn') {
-            document.getElementById('modal').classList.remove('open');
+        if (e.target === modal || e.target.classList.contains('modal-close')) {
+            modal.classList.remove('open');
+            document.body.style.overflow = 'auto'; // Réactive le scroll
         }
     }
 
-    // Lancer l'affichage au démarrage
-    renderProjects('all');
+    // Initialisation
+    renderProjects(projects);
+
 </script>
 
 </body>
