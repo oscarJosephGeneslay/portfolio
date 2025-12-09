@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oscar JOSEPH--GENESLAY - Portfolio</title>
+    <title>Oscar JOSEPH-GENESLAY - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
@@ -15,11 +15,10 @@
             --bg-global: #fdfdfd;
             
             /* THÈMES PAR SECTION */
-            
-            /* 1. Portfolio (Nouveau : Vert Émeraude / Teal - Pro & Tech) */
-            --theme-port-bg: #e0f2f1;      /* Fond très clair */
-            --theme-port-accent: #009688;  /* Couleur principale */
-            --theme-port-dark: #004d40;    /* Couleur foncée (Textes) */
+            /* 1. Portfolio (Teal - Pro & Tech) */
+            --theme-port-bg: #e0f2f1;
+            --theme-port-accent: #009688;
+            --theme-port-dark: #004d40;
 
             /* 2. Formation (Bleu Ciel - Académique) */
             --theme-form-bg: #e3f2fd;
@@ -31,7 +30,7 @@
             --theme-exp-accent: #ef5350;
             --theme-exp-dark: #b71c1c;
 
-            /* Ombres et Visibilité des cartes */
+            /* Ombres */
             --shadow-card: 0 10px 20px rgba(0,0,0,0.08), 0 6px 6px rgba(0,0,0,0.05);
             --shadow-hover: 0 15px 30px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.08);
         }
@@ -49,63 +48,82 @@
             transition: background-color 0.6s ease;
         }
 
-        /* --- ANIMATION ARCS DE CERCLE (Version Enrichie) --- */
+        /* --- ANIMATION ARCS DE CERCLE --- */
         .arcs-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1; overflow: hidden; pointer-events: none;
         }
-
         .arc {
-            position: absolute;
-            border-radius: 50%;
-            border: 2px solid rgba(0,0,0,0.04);
-            transition: all 1s ease;
+            position: absolute; border-radius: 50%; border: 2px solid rgba(0,0,0,0.04); transition: all 1s ease;
         }
-
-        /* Gauche */
         .arc-1 { width: 50vh; height: 50vh; left: -25vh; top: 20%; border-right: 4px solid rgba(0,0,0,0.06); animation: rotate 40s linear infinite; }
         .arc-2 { width: 70vh; height: 70vh; left: -35vh; top: 15%; border-right: 2px solid rgba(0,0,0,0.04); animation: rotateRev 60s linear infinite; }
-        
-        /* Droit */
         .arc-3 { width: 60vh; height: 60vh; right: -30vh; bottom: 10%; border-left: 4px solid rgba(0,0,0,0.06); animation: rotate 50s linear infinite; }
         .arc-4 { width: 80vh; height: 80vh; right: -40vh; bottom: 5%; border-left: 2px solid rgba(0,0,0,0.04); animation: rotateRev 70s linear infinite; }
-        
-        /* Nouveaux Cercles (Centre / Flottants) */
         .arc-5 { width: 30vh; height: 30vh; left: 20%; top: 10%; border: 2px dashed rgba(0,0,0,0.03); animation: rotate 100s linear infinite; }
-        .arc-6 { width: 40vh; height: 40vh; right: 20%; top: 50%; border: 1px solid rgba(0,0,0,0.04); animation: rotateRev 80s linear infinite; }
-        .arc-7 { width: 15vh; height: 15vh; left: 50%; bottom: 10%; border: 3px solid rgba(0,0,0,0.02); animation: rotate 30s linear infinite; }
-
+        
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes rotateRev { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
 
-        /* --- HEADER --- */
+        /* --- HEADER (NOUVEAU LAYOUT) --- */
         header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
-            padding: 50px 20px;
-            text-align: center;
+            padding: 60px 20px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
             border-bottom: 1px solid rgba(0,0,0,0.05);
             position: relative; z-index: 10;
         }
 
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .profile-container {
+            flex-shrink: 0;
+        }
+
         .profile-img {
-            width: 160px; height: 160px;
+            width: 180px; height: 180px;
             border-radius: 50%; object-fit: cover;
-            border: 4px solid white;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            margin-bottom: 15px;
+            border: 5px solid white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
             transition: transform 0.3s;
         }
-        .profile-img:hover { transform: scale(1.05); }
+        .profile-img:hover { transform: scale(1.05) rotate(2deg); }
 
-        h1 { margin: 0; color: var(--text-main); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 2.2rem; }
-        h2 { margin: 10px 0 20px; font-weight: 500; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-light); }
-        .bio { max-width: 700px; margin: 0 auto; color: var(--text-light); }
+        .profile-info h1 {
+            margin: 0 0 10px 0;
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.2rem;
+            line-height: 1.2;
+        }
+
+        .profile-info h2 {
+            margin: 5px 0;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--theme-port-accent); /* Utilisation du vert/teal pour les titres */
+        }
+
+        .bio {
+            margin-top: 15px;
+            color: var(--text-light);
+            font-size: 1rem;
+            max-width: 600px;
+        }
 
         /* --- NAVIGATION --- */
         nav {
-            display: flex; justify-content: center; gap: 30px;
+            display: flex; justify-content: center; gap: 20px;
             margin: 40px 0; padding: 0 20px; flex-wrap: wrap;
         }
 
@@ -123,24 +141,13 @@
         }
 
         /* Couleurs Active Navigation */
-        .btn-port:hover, .btn-port.active {
-            background: var(--theme-port-accent); color: white;
-            box-shadow: 0 8px 25px rgba(0, 150, 136, 0.4);
-        }
-        .btn-form:hover, .btn-form.active {
-            background: var(--theme-form-accent); color: white;
-            box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
-        }
-        .btn-exp:hover, .btn-exp.active {
-            background: var(--theme-exp-accent); color: white;
-            box-shadow: 0 8px 25px rgba(239, 83, 80, 0.4);
-        }
+        .btn-port:hover, .btn-port.active { background: var(--theme-port-accent); color: white; box-shadow: 0 8px 25px rgba(0, 150, 136, 0.4); }
+        .btn-form:hover, .btn-form.active { background: var(--theme-form-accent); color: white; box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4); }
+        .btn-exp:hover, .btn-exp.active { background: var(--theme-exp-accent); color: white; box-shadow: 0 8px 25px rgba(239, 83, 80, 0.4); }
 
         /* --- SECTIONS --- */
         .section-content {
-            display: none;
-            max-width: 1200px; margin: 0 auto 80px; padding: 0 20px;
-            animation: fadeIn 0.6s ease;
+            display: none; max-width: 1200px; margin: 0 auto 80px; padding: 0 20px; animation: fadeIn 0.6s ease;
         }
         .section-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -148,10 +155,8 @@
         /* --- BARRE RECHERCHE --- */
         .search-wrapper { max-width: 500px; margin: 0 auto 40px; }
         .search-input {
-            width: 100%; padding: 15px 25px;
-            border-radius: 50px; border: 2px solid transparent;
-            background: white; font-size: 1rem;
-            box-shadow: var(--shadow-card); transition: all 0.3s;
+            width: 100%; padding: 15px 25px; border-radius: 50px; border: 2px solid transparent;
+            background: white; font-size: 1rem; box-shadow: var(--shadow-card); transition: all 0.3s;
             outline: none; font-family: 'Open Sans', sans-serif;
         }
         .search-input:focus { border-color: var(--theme-port-accent); transform: scale(1.02); }
@@ -162,47 +167,33 @@
             display: inline-block; margin: 5px; padding: 8px 20px;
             border-radius: 30px; background: white; color: var(--text-light);
             cursor: pointer; font-size: 0.9rem; font-weight: 600;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: all 0.2s;
-            border: 1px solid transparent;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: all 0.2s; border: 1px solid transparent;
         }
-        .filter-tag:hover, .filter-tag.active {
-            background: var(--theme-port-accent); color: white; transform: scale(1.05);
-        }
+        .filter-tag:hover, .filter-tag.active { background: var(--theme-port-accent); color: white; transform: scale(1.05); }
 
-        /* --- GRILLE PROJETS (Cartes Améliorées) --- */
-        .projects-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 35px;
-        }
+        /* --- GRILLE PROJETS --- */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 35px; }
 
         .card {
             background: white; border-radius: 16px; overflow: hidden;
-            /* Visibilité renforcée */
-            box-shadow: var(--shadow-card);
-            border: 1px solid rgba(0,0,0,0.06); 
+            box-shadow: var(--shadow-card); border: 1px solid rgba(0,0,0,0.06); 
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: pointer; display: flex; flex-direction: column;
         }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--theme-port-accent);
-        }
+        .card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); border-color: var(--theme-port-accent); }
 
         .card-img-wrapper { height: 210px; overflow: hidden; position: relative; border-bottom: 1px solid #f0f0f0; }
         .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
         .card:hover .card-img { transform: scale(1.08); }
 
         .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
-        
         .card-title { font-size: 1.25rem; margin: 12px 0; color: var(--text-main); font-weight: 700; }
         .card-summary { color: #666; font-size: 0.95rem; line-height: 1.5; flex-grow: 1; margin-bottom: 20px; }
         
-        /* TAGS COLORÉS */
         .tags-container { margin-bottom: 8px; }
         .tag { font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 6px; margin-right: 6px; text-transform: uppercase; display: inline-block; margin-bottom: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         
-        /* Couleurs Spécifiques des Outils */
+        /* Couleurs Tags */
         .tag-Python { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
         .tag-R { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
         .tag-SQL { background: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
@@ -218,8 +209,7 @@
         .view-btn { color: var(--theme-port-accent); transition: color 0.2s; }
         .card:hover .view-btn { color: var(--theme-port-dark); text-decoration: underline; }
 
-
-        /* --- TIMELINE HORIZONTALE (Formation & Expérience) --- */
+        /* --- TIMELINE HORIZONTALE --- */
         .timeline-horizontal {
             display: flex; justify-content: space-between; position: relative;
             margin-top: 50px; padding: 20px 0;
@@ -228,43 +218,29 @@
             content: ''; position: absolute; top: 40px; left: 0; right: 0; height: 4px;
             background: #e0e0e0; z-index: -1; border-radius: 2px;
         }
-
-        .timeline-col {
-            flex: 1; text-align: center; padding: 0 15px; position: relative;
-        }
-
+        .timeline-col { flex: 1; text-align: center; padding: 0 15px; position: relative; }
         .timeline-dot {
-            width: 24px; height: 24px; border-radius: 50%;
-            margin: 0 auto 20px;
-            border: 4px solid white;
-            box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
-            background: #ccc;
-            position: relative; top: 8px;
-            transition: all 0.3s;
+            width: 24px; height: 24px; border-radius: 50%; margin: 0 auto 20px;
+            border: 4px solid white; box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+            background: #ccc; position: relative; top: 8px; transition: all 0.3s;
         }
-
         .timeline-card {
             background: white; padding: 25px; border-radius: 12px;
             box-shadow: var(--shadow-card); position: relative; margin-top: 30px;
-            transition: transform 0.3s; border-top: 4px solid transparent;
-            text-align: left;
+            transition: transform 0.3s; border-top: 4px solid transparent; text-align: left;
         }
         .timeline-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
-
-        /* Flèche carte */
         .timeline-card::before {
             content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
-            border-width: 0 10px 10px 10px; border-style: solid;
-            border-color: transparent transparent white transparent;
+            border-width: 0 10px 10px 10px; border-style: solid; border-color: transparent transparent white transparent;
         }
 
-        /* Thème Formation (Bleu) */
+        /* Thèmes Timelines */
         .theme-blue .timeline-dot { background: var(--theme-form-accent); }
         .theme-blue .timeline-card { border-top-color: var(--theme-form-accent); }
         .theme-blue h3 { color: var(--theme-form-dark); margin: 0 0 5px; font-size: 1.15rem; }
         .theme-blue .t-date { background: var(--theme-form-bg); color: var(--theme-form-dark); padding: 4px 12px; border-radius: 15px; font-weight: bold; font-size: 0.8rem; display: inline-block; margin-bottom: 12px; }
 
-        /* Thème Expérience (Rouge) */
         .theme-red .timeline-dot { background: var(--theme-exp-accent); }
         .theme-red .timeline-card { border-top-color: var(--theme-exp-accent); }
         .theme-red h3 { color: var(--theme-exp-dark); margin: 0 0 5px; font-size: 1.15rem; }
@@ -294,14 +270,21 @@
         .modal-close { font-size: 2rem; cursor: pointer; border: none; background: none; color: #bbb; transition: color 0.2s; }
         .modal-close:hover { color: var(--theme-port-accent); }
         
+        /* Modal Content Styling */
+        .modal-img-container { text-align: center; background: #f5f5f5; padding: 10px; border-radius: 8px; margin-bottom: 20px; }
+        .modal-img { max-height: 400px; max-width: 100%; border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        
+        .modal-section-title { color: var(--theme-port-dark); border-bottom: 2px solid var(--theme-port-accent); padding-bottom: 5px; margin-top: 30px; font-weight: 700; font-size: 1.1rem; text-transform: uppercase; }
+        .modal-text { color: #555; text-align: justify; white-space: pre-wrap; margin-top: 15px; }
+
         /* Responsive */
         @media (max-width: 768px) {
+            .header-content { flex-direction: column; text-align: center; }
             .timeline-horizontal { flex-direction: column; }
             .timeline-horizontal::before { left: 15px; width: 4px; height: 100%; top: 0; }
             .timeline-col { text-align: left; padding-left: 45px; margin-bottom: 40px; }
             .timeline-dot { position: absolute; left: 5px; top: 0; margin: 0; }
             .timeline-card::before { left: -10px; top: 15px; transform: rotate(-90deg); border-color: transparent white transparent transparent; }
-            .profile-img { width: 130px; height: 130px; }
             h1 { font-size: 1.8rem; }
         }
     </style>
@@ -314,20 +297,22 @@
     <div class="arc arc-3"></div>
     <div class="arc arc-4"></div>
     <div class="arc arc-5"></div>
-    <div class="arc arc-6"></div>
-    <div class="arc arc-7"></div>
 </div>
 
 <header>
-    <div class="profile-container">
-        <img src="images/moi_copie.png" alt="Oscar JG" class="profile-img" onerror="this.src='https://via.placeholder.com/160?text=O'">
+    <div class="header-content">
+        <div class="profile-container">
+            <img src="images/moi_copie.png" alt="Oscar JG" class="profile-img" onerror="this.src='https://via.placeholder.com/180?text=O'">
+        </div>
+        <div class="profile-info">
+            <h1>Oscar JOSEPH--GENESLAY</h1>
+            <h2>Alternant Web Analyst (Wonderbox)</h2>
+            <h2>Étudiant au Master Mégadonnées et Analyse Sociale (Cnam)</h2>
+            <p class="bio">
+                Je suis passionné par l'analyse de données et les statistiques. Je réalise mon master en alternance pour me permettre d'acquérir de l'expérience professionnelle.
+            </p>
+        </div>
     </div>
-    <h1>Oscar JOSEPH--GENESLAY</h1>
-    <h2>Alternant Web Analyst (Wonderbox)</h2>
-    <h2>Étudiant au Master Mégadonnées et Analyse Sociale (Cnam)</h2>
-    <p class="bio">
-        Je suis passionné par l'analyse de données et les statistiques. Je réalise mon master en alternance pour me permettre d'acquérir de l'expérience professionnelle.
-    </p>
 </header>
 
 <nav>
@@ -348,6 +333,7 @@
         <span class="filter-tag" onclick="setTagFilter('R', this)">R</span>
         <span class="filter-tag" onclick="setTagFilter('SQL', this)">SQL</span>
         <span class="filter-tag" onclick="setTagFilter('PowerBI', this)">PowerBI</span>
+        <span class="filter-tag" onclick="setTagFilter('SAS', this)">SAS</span>
     </div>
 
     <div class="projects-grid" id="grid">
@@ -372,7 +358,7 @@
             <div class="timeline-card">
                 <span class="t-date">2022 - 2025</span>
                 <h3>BUT Science des Données</h3>
-                <span class="t-place">IUT Grand Ouest Normandie</span>
+                <span class="t-place">IUT Grand Ouest Normandie, Lisieux</span>
                 <div class="t-desc">Cursus complet : Statistique décisionnelle, Programmation, Dataviz.</div>
             </div>
         </div>
@@ -412,7 +398,7 @@
             <div class="timeline-dot"></div>
             <div class="timeline-card">
                 <span class="t-date">Sept 2024 - Août 2025</span>
-                <h3>Chargé d'études stats</h3>
+                <h3>Assistant chargé d'études</h3>
                 <span class="t-place">Observatoire UNICAEN</span>
                 <div class="t-desc">
                     <ul>
@@ -450,164 +436,165 @@
             <button class="modal-close" onclick="closeModal(event)">&times;</button>
         </div>
         <div class="modal-body">
-            <div style="text-align:center; background:#f5f5f5; padding:10px; border-radius:8px; margin-bottom:20px;">
-                <img id="mImg" src="" style="max-height:350px; max-width:100%; border-radius:4px;">
+            <div class="modal-img-container">
+                <img id="mImg" src="" class="modal-img">
             </div>
             
             <div id="mTags" style="margin-bottom:20px;"></div>
             
-            <h4 style="color:#00796b; border-bottom:1px solid #e0e0e0; padding-bottom:5px; font-weight:700;">Contexte & Objectifs</h4>
-            <p id="mDesc" style="color:#555; text-align:justify;"></p>
+            <h4 class="modal-section-title">Présentation & Contexte</h4>
+            <p id="mDesc" class="modal-text"></p>
 
-            <h4 style="color:#00796b; border-bottom:1px solid #e0e0e0; padding-bottom:5px; margin-top:25px; font-weight:700;">Démarche Technique</h4>
-            <p id="mApproach" style="color:#555; text-align:justify;"></p>
+            <h4 class="modal-section-title">Démarche & Résolution</h4>
+            <p id="mApproach" class="modal-text"></p>
 
-            <h4 style="color:#00796b; border-bottom:1px solid #e0e0e0; padding-bottom:5px; margin-top:25px; font-weight:700;">Compétences Clés</h4>
-            <p id="mSkills" style="color:#555;"></p>
+            <h4 class="modal-section-title">Mes Acquis</h4>
+            <p id="mSkills" class="modal-text"></p>
         </div>
     </div>
 </div>
 
 <script>
-    // --- DONNEES PROJETS ---
+    // --- DONNEES PROJETS (Texte Complet intégré) ---
     const projects = [
         {
-            title: "Enquête Batman & Population de Gotham",
+            title: "Reporting & Enquête : Gotham City",
             tags: ["Python", "SQL"],
             img: "images/p1.jpg",
-            summary: "Croisement de données CSV et SQL pour identifier un individu spécifique.",
-            description: "Projet divisé en deux parties : retrouver l'identité de Batman pour le chef de la police et analyser les caractéristiques démographiques pour le maire.",
-            approach: "Agrégation de données CSV, création d'une base SQLite. Croisement d'indices pour filtrer les individus.",
-            skills: "Manipulation de grands jeux de données, Logique SQL/Python.",
-            place: "Université de Caen"
+            summary: "Croisement de données CSV et SQL pour identifier un individu et cartographier la population.",
+            description: "Cette SAÉ était divisée en deux parties. Dans la première partie, le chef de police de Gotham City nous a confié la mission de retrouver la véritable identité de Batman.\nDans la deuxième partie, le maire de Gotham City nous a demandé de réaliser des représentations graphiques sur les caractéristiques de sa population. Le travail devait être effectué à l'aide de Python, de fichiers CSV fournis par notre enseignant et du langage SQL.\n\nNous étions un groupe de trois pour ce projet. J'avais pour mission de réaliser la première partie sur la recherche de l'identité de Batman, tandis que les autres membres devaient s'occuper de la deuxième partie sur les représentations graphiques.",
+            approach: "J'ai d'abord commencé par ouvrir tous nos fichiers CSV (contenant des informations sur les habitants de Gotham City) afin de les préparer pour la manipulation des données. Nous avons dû faire une étape d’agrégation de certaines données.\n\nDes informations sur l'identité de Batman nous ont été communiquées, et nous avons donc croisé ces informations avec nos fichiers CSV à l’aide de programmes Python et d’une base de données SQLite. Nous avons regardé pour chaque information fournie, lesquelles ne correspondaient pas à notre individu.\nÀ la fin, nous avons obtenu une seule personne correspondant aux informations. La difficulté était de travailler sur des jeux de données avec un grand nombre de lignes.",
+            skills: "Ce projet nous a montré que le traitement des données peut s'avérer plus difficile que prévu lorsque les jeux de données sont volumineux. Il est donc important de réfléchir en amont à la technique la plus optimisée pour éviter de perdre du temps.\nCette expérience nous a permis d'apprendre à mieux travailler en équipe, à se répartir les tâches efficacement et à collaborer pour atteindre un objectif commun.",
+            place: "IUT Grand Ouest Normandie"
         },
         {
             title: "Automatisation de bulletins scolaires",
             tags: ["Python"],
             img: "images/p2.jpg",
-            summary: "Script Python pour générer des bulletins scolaires.",
-            description: "Création d'un système pour calculer les moyennes élèves/matières à partir de fichiers hétérogènes (txt, csv).",
-            approach: "Nettoyage de données atypiques, conversion de types, algorithmique.",
-            skills: "Nettoyage de données (Data Cleaning), Gestion d'erreurs.",
-            place: "Université de Caen"
+            summary: "Traitement de fichiers bruts (TXT/CSV) pour générer les moyennes et bulletins d'une classe.",
+            description: "Pour cette SAÉ, la directrice d'un collège nous a demandé de créer un fichier contenant les moyennes des élèves dans plusieurs matières, suite à un problème informatique.\nNous avions pour mission de créer un fichier CSV comportant les noms, prénoms et moyennes des élèves, ainsi qu'un carnet de notes pour chaque élève avec leurs moyennes, mentions et notes.\n\nNotre groupe était composé de trois étudiants. Un membre s'occupait des CSV, je m'occupais des fichiers TXT et l’autre du rapport LaTeX.",
+            approach: "Le travail était complexe pour obtenir les moyennes car les notes étaient au format 'caractère'. On a utilisé la fonction 'map' pour transformer les valeurs en nombre.\n\nJ’avais la tâche de retirer les données indésirables (comme une liste de courses insérée dans le fichier par erreur). J'ai utilisé la fonction '.lower()' pour repérer ces données intrusives.\nPour les supprimer sans créer de vides, j'ai créé une nouvelle variable : dès que je voyais une donnée importante, je l'ajoutais dans cette variable. À la fin, j'obtenais toutes les bonnes données épurées.",
+            skills: "Nous avons remarqué que le traitement et la préparation des données avant de les utiliser étaient primordiaux. Si nous ne réalisons pas ces étapes, nous risquons d'être bloqués par la suite.\n\nPour ma part, j'ai appris qu'il faut prendre plus de temps pour réfléchir aux erreurs afin de les résoudre rapidement plutôt que d'essayer sans résultat pendant des heures. La communication et l'organisation sont clés.",
+            place: "IUT Grand Ouest Normandie"
         },
         {
             title: "Analyse des locations Citibike NYC",
             tags: ["R"],
             img: "images/p3.jpg",
-            summary: "Visualisation de la mobilité urbaine à New York.",
-            description: "Étude complète des données de location de vélos (juin 2022) pour comprendre les habitudes des usagers.",
-            approach: "Utilisation de RStudio pour filtrer, organiser et visualiser les données.",
-            skills: "Programmation R, Analyse exploratoire.",
-            place: "Université de Caen"
+            summary: "Analyse exploratoire et visualisation temporelle des données de vélos à New York.",
+            description: "Notre objectif était de réaliser une analyse exploratoire sur la location de vélos dans la ville de New-York pour le mois de juin 2022.\nNous avons récupéré les données sur le site de Citibike et travaillé sur le fichier '202206-citibike-tripdata.csv'. Nous avons utilisé RStudio pour créer des graphiques et effectuer une analyse.\n\nÉtant en groupe de 2, nous avons mis en place un système de programmation en binôme pour corriger les erreurs et réfléchir à la meilleure façon de procéder.",
+            approach: "Le principal problème était lié à l'utilisation d'un nouveau langage (R) et d'une nouvelle structure. Nous avons dû consulter la documentation régulièrement.\n\nLe plus difficile n'était pas de réaliser les graphiques en eux-mêmes, mais plutôt d'organiser et de filtrer les données de manière à les stocker dans des objets pour nos représentations graphiques. Nous avons réussi à réaliser la totalité des graphiques attendus.",
+            skills: "Le traitement et la préparation des données avant leur utilisation sont primordiaux pour éviter toute analyse faussée.\nLe langage R est un outil essentiel à maîtriser pour les statistiques.\nLa programmation en binôme est pertinente car elle permet d'éviter les erreurs d'inattention et facilite la compréhension du programme.",
+            place: "IUT Grand Ouest Normandie"
         },
         {
             title: "Régression : Indice de masse maigre",
             tags: ["R"],
             img: "images/p4.jpg",
-            summary: "Modélisation statistique liant morphologie et masse maigre.",
-            description: "Étude de la corrélation entre l'indice de masse maigre et des mesures morphologiques.",
-            approach: "Nettoyage, Nuages de points, Régression linéaire simple.",
-            skills: "Modélisation statistique, Analyse de corrélation.",
-            place: "Université de Caen"
+            summary: "Modélisation statistique pour expliquer la masse maigre via des variables morphologiques.",
+            description: "Le but était d'étudier l'indice de masse maigre en relation avec des variables morphologiques (tour de cou, hanches, abdomen) pour déterminer si elles pouvaient expliquer une variation de l'indice.\n\nNous étions un groupe de trois, et j'étais responsable de la création du code R sous RStudio. J'ai préparé les données, créé des représentations graphiques et des tableaux.",
+            approach: "J'ai commencé par préparer les données en sélectionnant les valeurs et en calculant l'indice de masse maigre. J'ai supprimé des données atypiques via l'écart interquartile.\n\nEnsuite, j'ai réalisé des nuages de points pour étudier l'association entre notre indice et les variables. Nous avons cherché les coefficients de détermination pour identifier la meilleure variable (la circonférence du cou).\nEnfin, nous avons créé un nuage de dispersion croisant notre meilleur modèle avec l'indice et inséré la droite des moindres carrés.",
+            skills: "J'ai compris l'importance de bien analyser les graphiques. Si nous ne préparons pas nos données, nous risquons des représentations faussées.\nLe travail en groupe a permis de réfléchir plus rapidement au code.\nJ'ai amélioré ma compréhension du langage R et des différentes fonctions statistiques.",
+            place: "IUT Grand Ouest Normandie"
         },
         {
             title: "Datawarehouse Météo & Pollution",
             tags: ["Python", "SQL"],
             img: "images/p5.jpg",
-            summary: "Pipeline ETL complet vers MySQL.",
-            description: "Construction d'un entrepôt de données météo et pollution.",
-            approach: "Scripts Python (Pandas) pour nettoyer. Insertion MySQL.",
-            skills: "ETL, SQL, Python.",
-            place: "Université de Caen"
+            summary: "ETL complet : Import, nettoyage et stockage MySQL pour analyser l'air de Sheffield.",
+            description: "Le projet portait sur les données météorologiques et la qualité de l’air de Sheffield. Partie 1 : Importer automatiquement des CSV, les traiter et les insérer dans une base MySQL. Partie 2 : Analyses graphiques avec Python.\n\nJ’avais pour mission de coder les scripts d’importation et d’analyse, ainsi que de réaliser les rapports.",
+            approach: "J’ai importé les CSV dans Python pour créer deux objets (météo et pollution). J'ai nettoyé et réorganisé les données avec Pandas et Numpy.\nEnsuite, j’ai inséré l’intégralité des données dans une base MySQL via Python. Les tables étaient liées par une clé unique.\n\nAvec Python (Matplotlib), j'ai analysé l’évolution des températures, l’influence du vent sur la pollution et la qualité de l’air selon les années.",
+            skills: "Le traitement des données avant les analyses est une étape critique ; sans cela, on risque d’obtenir des données erronées.\nLa volumétrie des données est à prendre en compte (temps d'exécution).\nCette expérience m’a permis de développer mes compétences en programmation Python et en requêtage SQL.",
+            place: "IUT Grand Ouest Normandie"
         },
         {
             title: "Séries Temporelles : Hôtellerie",
             tags: ["R"],
             img: "images/p6.jpg",
-            summary: "Prévision des nuitées hôtelières en Normandie.",
-            description: "Analyse des données INSEE (2011-2023) pour comprendre la dynamique touristique.",
-            approach: "Régression linéaire par morceaux, coefficients saisonniers, prévision à N+1.",
-            skills: "Séries chronologiques, Prévision.",
-            place: "Université de Caen"
+            summary: "Désaisonnalisation et prévision des nuitées hôtelières en Normandie.",
+            description: "Nous avons analysé les données de l’INSEE sur les nuitées dans l’hôtellerie en Normandie (janvier 2011 à septembre 2023). L’objectif était d’analyser les composantes et faire une prédiction.\n\nJ’avais pour mission de réaliser le code d’analyse ainsi que le rapport R-Markdown.",
+            approach: "J’ai entrepris l’analyse exploratoire pour avoir une vision globale. Ensuite, j’ai réalisé un modèle de régression linéaire par morceaux et un autre modèle pour estimer la composante saisonnière (visualisation des mois favorables/défavorables).\n\nPuis, j’ai analysé les résidus et réalisé une prévision de données sur un an. La difficulté était d’analyser des graphiques complexes nécessitant des recherches approfondies.",
+            skills: "La préparation des données et la conception d’un modèle de régression sont primordiales ; un modèle mal ajusté amène à des analyses erronées.\nCe projet m'a permis de faire des analyses variées et de développer mes compétences en R sur la thématique des séries chronologiques.",
+            place: "IUT Grand Ouest Normandie"
         },
         {
             title: "Prédiction Poids des Manchots",
             tags: ["R"],
             img: "images/p7.jpg",
-            summary: "Régression multiple pour prédire une variable biologique.",
-            description: "Estimation du poids des manchots selon caractéristiques physiques.",
-            approach: "Comparaison : ANOVA, ANCOVA, Régression multiple.",
-            skills: "Statistiques inférentielles, Modèles.",
-            place: "Université de Caen"
+            summary: "Modèles de régression multiple et ANOVA pour prédire une variable quantitative.",
+            description: "L'objectif était de prédire le poids d'un manchot des îles Palmer (Antarctique) à partir de facteurs quantitatifs et qualitatifs, en utilisant des modèles de régression linéaire sous R.\n\nMa responsabilité était de développer les scripts R pour prédire et analyser le poids, ainsi que le support visuel (Marp).",
+            approach: "Nous avons exploré 4 techniques :\n1. Régression linéaire simple (longueur nageoires, etc.).\n2. ANOVA : Influence des variables qualitatives (espèce, sexe).\n3. ANCOVA : Expliquer les variations en combinant longueur nageoire et espèce/sexe.\n4. Régression linéaire multiple : Sélection du modèle le plus robuste par approche ascendante/descendante.",
+            skills: "J'ai renforcé mes compétences en R (conception, analyse, vérification de modèles).\nJ'ai développé une meilleure compréhension des méthodes statistiques (quantitatives et qualitatives) et ma capacité à présenter des résultats clairs.",
+            place: "IUT Grand Ouest Normandie"
         },
         {
             title: "Storytelling Dow Jones",
             tags: ["PowerBI"],
             img: "images/p8.jpg",
-            summary: "Narration visuelle interactive des crises boursières.",
-            description: "Création d'un storytelling sur l'indice Dow Jones.",
-            approach: "Utilisation des signets (bookmarks) PowerBI.",
-            skills: "Dataviz, Storytelling.",
-            place: "Université de Caen"
+            summary: "Tableau de bord interactif racontant l'histoire des crises boursières.",
+            description: "Ce TP visait à nous familiariser avec le storytelling autour du Dow Jones Industrial Average. L'objectif était d'acquérir des compétences pour concevoir une narration captivante avec PowerBI.",
+            approach: "J'ai utilisé la fonction de 'signet' pour figer des instants précis (ex: effondrement du marché).\nJ'ai appris à mettre en évidence un graphique spécifique parmi d'autres pour clarifier le propos, et utilisé des filtres d'année pour examiner des segments spécifiques.",
+            skills: "J'ai compris comment simplifier l'interprétation de données complexes via une narration compréhensible.\nJ’ai appris à manipuler les fonctions avancées de PowerBI (signets, navigation) pour créer un storytelling attrayant.",
+            place: "IUT Grand Ouest Normandie"
         },
         {
             title: "Épidémiologie : Cancer du Poumon",
             tags: ["SAS", "R"],
             img: "images/p9.jpg",
-            summary: "Modèle de Cox sur la cohorte AGRICAN.",
-            description: "Lien entre pratiques agricoles et cancer du poumon.",
-            approach: "Traitement SAS, Tests R, Modèle de Cox.",
-            skills: "Biostatistiques, SAS, R.",
-            place: "Université de Caen"
+            summary: "Étude des facteurs de risques (cohorte AGRICAN) via modèle de Cox.",
+            description: "Projet de statistique épidémiologique sur les facteurs de risques liés au cancer du poumon, avec le Centre François Baclesse (données cohorte AGRICAN).\nNous avons utilisé les tests du Chi-2, de Student et le modèle de Cox, avec SAS et R.",
+            approach: "Traitement SAS : Calcul de la durée d'élevage, exclusion de départements, création de la variable incidence.\nTraitement R : Tableaux comparatifs (cas vs non-cas) et tests statistiques.\nRetour sur SAS : Modèle de Cox (avec l'âge comme échelle de temps) pour obtenir les Hazard Ratios et intervalles de confiance.",
+            skills: "Expérience enrichissante en épidémiologie et manipulation du modèle de Cox.\nDéveloppement des compétences sur SAS et R.\nDécouverte des articles scientifiques du domaine et entraînement à la communication scientifique.",
+            place: "IUT Grand Ouest Normandie"
         },
         {
             title: "NoSQL : Migration Olist",
             tags: ["Python", "NoSQL"],
             img: "images/p10.jpg",
-            summary: "Migration e-commerce vers MongoDB.",
-            description: "Passage d'un format CSV à une base NoSQL MongoDB.",
-            approach: "Script Python pymongo, indexation.",
-            skills: "NoSQL, MongoDB, Optimisation.",
-            place: "Université de Caen"
+            summary: "Migration de données e-commerce vers MongoDB et optimisation des requêtes.",
+            description: "Analyse de l’activité commerciale du site Olist (tendances, livraison, satisfaction). Les données CSV devaient être migrées vers MongoDB puis analysées via Python.\nTravail individuel réalisé avec un Notebook documenté.",
+            approach: "Création de la base MongoDB et insertion des données via Python (pymongo). J'ai rencontré un problème de temps d'exécution sur les jointures car les ID étaient au format texte.\nSolution : J'ai appliqué le typage 'index' via create_index() pour définir les colonnes comme des ID. Les requêtes sont passées de plusieurs minutes à quelques secondes.",
+            skills: "Renforcement de la maîtrise de Python et des bases NoSQL (MongoDB).\nApprentissage des techniques d'indexation pour optimiser les performances.\nUtilisation de Jupyter Notebook pour une approche structurée.",
+            place: "IUT Grand Ouest Normandie"
         },
         {
             title: "NLP & Datamining : Avis Clients",
             tags: ["Python"],
             img: "images/p11.jpg",
-            summary: "Analyse de sentiments (Deep Learning).",
-            description: "Prédiction de la satisfaction client via NLP.",
-            approach: "NLP, Clustering SVD, Deep Learning.",
-            skills: "Machine Learning, NLP.",
-            place: "Université de Caen"
+            summary: "Analyse de sentiments et classification des avis Olist (Deep Learning/Clustering).",
+            description: "Analyse des avis utilisateurs Olist pour évaluer la satisfaction client, puis développement d'un modèle de Deep Learning et de clustering.\nTravail sur Notebook Python avec pandas, nltk, sklearn.",
+            approach: "Création d'une variable cible de satisfaction. Traitement NLP (minuscules, ponctuation, stop words, lemmatisation).\nClustering et prédiction via Bag of Words et TF-IDF sur un échantillon.\nModèle de Deep Learning (train/test 80/20) pour prédire 4 modalités de satisfaction. Visualisation via Matrice de confusion et Courbes ROC.",
+            skills: "Compétences en traitement de données et NLP (Natural Language Processing).\nEsprit critique sur le paramétrage des modèles pour obtenir des résultats cohérents.\nOrganisation du code via Notebook.",
+            place: "IUT Grand Ouest Normandie"
         },
         {
-            title: "Big Data Agricole",
+            title: "Big Data Agricole : Modélisation",
             tags: ["R"],
             img: "images/p12.jpg",
-            summary: "Modèles ML avancés sur données massives.",
-            description: "Prédiction santé via ratios activités agricoles.",
-            approach: "ACP, Bootstrap, Forêts Aléatoires, Réseaux de neurones.",
-            skills: "Big Data, Machine Learning.",
-            place: "Université de Caen"
+            summary: "Comparaison de modèles prédictifs complexes sur données massives (AGRICAN).",
+            description: "Objectif : Prédire l’état de maladie d’un agriculteur à partir de ratios d’activités agricoles. Données issues de la cohorte AGRICAN (Big Data).\nTravail en groupe sous R.",
+            approach: "1. Analyse univariée/multivariée (ACP) pour réduire la dimensionnalité (12 composantes conservées).\n2. Sélection de variables via Bootstrap (régressions logistiques) et méthode Backward.\n3. Création de modèles prédictifs (Régression logistique, Arbres de décisions, Réseaux de neurones) comparés via des boxplots de performance.",
+            skills: "Compétences en traitement et analyse de Big Data.\nModélisation prédictive avec techniques avancées sous R.\nAptitudes en travail collaboratif.",
+            place: "IUT Grand Ouest Normandie"
         }
     ];
 
     let currentTag = 'all';
 
+    // === GESTION DES ONGLETS ===
     function switchTab(tabId, btn, theme) {
-        // Active Tab
         document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
         document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(tabId).classList.add('active');
         btn.classList.add('active');
         
-        // Change la couleur de fond global en fonction du thème
-        if(theme === 'port') document.body.style.backgroundColor = '#e0f2f1'; // Teal très clair
-        if(theme === 'form') document.body.style.backgroundColor = '#e3f2fd'; // Bleu très clair
-        if(theme === 'exp') document.body.style.backgroundColor = '#ffebee';  // Rouge très clair
+        // Changement subtil de la couleur de fond globale
+        if(theme === 'port') document.body.style.backgroundColor = '#fdfbf7';
+        if(theme === 'form') document.body.style.backgroundColor = '#f0f8ff';
+        if(theme === 'exp') document.body.style.backgroundColor = '#fff5f5';
     }
 
+    // === AFFICHAGE PROJETS ===
     function renderProjects(list) {
         const grid = document.getElementById('grid');
         grid.innerHTML = '';
@@ -654,16 +641,19 @@
         filterProjects();
     }
 
+    // === MODALE ===
     const modal = document.getElementById('modalOverlay');
     function openModal(idx) {
         const p = projects[idx];
         document.getElementById('mTitle').innerText = p.title;
         let img = document.getElementById('mImg');
         img.src = p.img; img.onerror = function() { this.src=`https://via.placeholder.com/600x300?text=${p.title}`; };
+        
         document.getElementById('mTags').innerHTML = p.tags.map(t=>`<span class="tag tag-${t}">${t}</span>`).join('');
         document.getElementById('mDesc').innerText = p.description;
         document.getElementById('mApproach').innerText = p.approach;
         document.getElementById('mSkills').innerText = p.skills;
+        
         modal.classList.add('open');
         document.body.style.overflow = 'hidden';
     }
